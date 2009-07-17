@@ -3,10 +3,47 @@ class Users < ActiveRecord::Migration
     create_table :users, :force => true do |table|
       table.column :username, :string, :null => false, :limit => 30
       table.column :password, :string, :null => false, :limit => 50
+      table.column :address, :string, :liimit => 200
+      table.column :email, :string, :limit => 30
+      table.column :qq, :string, :limit => 15
+      table.column :cell_phone, :string, :limit => 15
+      table.column :phone, :string, :limit => 15
+      table.column :created_at, :datetime
+      table.column :updated_at, :datetime
+    end
+    create_table :admins, :force => true do |table|
+      table.column :username, :string, :null => false, :limit => 30
+      table.column :password, :string, :null => false, :limit => 50
+      table.column :created_at, :datetime
+      table.column :updated_at, :datetime
+    end
+    create_table :orders, :force =>true do |table|
+      table.column :order_code, :string, :null => false, :limit => 20
+      table.column :game_id, :interger, :null => false
+      table.column :game_area_id, :integer, :null => false
+      table.column :order_suit_id, :integer
+      table.column :order_level_id, :integer
+      table.column :created_at, :datetime
+      table.column :updated_at, :datetime
+    end
+    create_table :order_suits, :force => true do |table|
+      table
+    end
+    create_table :order_states, :force => true do |tabel|
+      table.column :value, :string, :null => false
+    end
+    create_table :site_news, :force => true do |table|
+      table.column :title, :string, :limit => 100
+      table.column :content, :string, :limit => 3000
+      table.column :image_path, :string, :limit => 100
+      table.column :created_at, :datetime
+      table.column :updated_at, :datetime
     end
   end
-
   def self.down
     drop_table :users
+    drop_table :orders
+    drop_table :order_states
+    drop_table :site_news
   end
 end
