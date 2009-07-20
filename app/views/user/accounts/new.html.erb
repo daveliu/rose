@@ -1,0 +1,12 @@
+<%= javascript_include_tag "public/form_validate", "user/forms" %>
+<% form_for :user, :url => {:action => :create} do |form| %>
+  username: <%= form.text_field :username %>
+  password: <%= form.password_field :password %>
+  confirm: <%= form.password_field :password, :name => nil %>
+  email: <%= form.text_field :email %>
+  qq: <%= form.text_field :qq %>
+  cell: <%= form.text_field :cell_phone %>
+  phone: <%= form.text_field :phone %>
+  address: <%= form.text_field :address %>
+  <%= form.submit "submit" %>
+<% end %>

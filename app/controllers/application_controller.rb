@@ -3,8 +3,12 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  
+  def current_user
+    @current_user ||= session[:user_id] ? User.find(session:user_id): nil
+  end
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  def after_logon(user)
+    session[:user_id] = user.id
+  end
 end
