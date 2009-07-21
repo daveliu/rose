@@ -962,3 +962,335 @@ Processing HomeController#index (for 127.0.0.1 at 2009-07-20 22:37:15) [GET]
 Rendering template within layouts/home
 Rendering home/index
 Completed in 19ms (View: 12, DB: 11) | 200 OK [http://localhost/]
+  [4;36;1mSQL (37.8ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (11.5ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (106.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (19.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (19.5ms)[0m   [0mSHOW FIELDS FROM `admins`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `admins`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `admins`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW FIELDS FROM `order_suits`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `order_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `order_suits`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (32.9ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `user_status`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `user_status`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_status`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `user_types`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `user_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_types`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (48.5ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (8.4ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (6.8ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `user_type_id` int(11), `user_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (25.3ms)[0m   [0mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `order_suit_id` int(11), `order_level_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.1ms)[0m   [0mCREATE TABLE `order_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.2ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.7ms)[0m   [0mCREATE TABLE `user_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.6ms)[0m   [0mCREATE TABLE `user_status` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (9.5ms)[0m   [0mDROP TABLE `users`[0m
+  [4;36;1mSQL (4.2ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `user_type_id` int(11), `user_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (8.2ms)[0m   [0;1mDROP TABLE `admins`[0m
+  [4;35;1mSQL (3.9ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mDROP TABLE `orders`[0m
+  [4;36;1mSQL (5.2ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `order_suit_id` int(11), `order_level_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mDROP TABLE `order_suits`[0m
+  [4;35;1mSQL (3.5ms)[0m   [0mCREATE TABLE `order_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mDROP TABLE `order_statuses`[0m
+  [4;36;1mSQL (3.7ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (8.6ms)[0m   [0;1mDROP TABLE `site_news`[0m
+  [4;35;1mSQL (4.7ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mDROP TABLE `user_types`[0m
+  [4;36;1mSQL (4.6ms)[0m   [0;1mCREATE TABLE `user_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mDROP TABLE `user_status`[0m
+  [4;35;1mSQL (3.9ms)[0m   [0mCREATE TABLE `user_status` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (18.0ms)[0m   [0mDROP TABLE `users`[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `user_type_id` int(11), `user_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mDROP TABLE `admins`[0m
+  [4;35;1mSQL (3.9ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mDROP TABLE `orders`[0m
+  [4;36;1mSQL (3.5ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `order_suit_id` int(11), `order_level_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mDROP TABLE `order_suits`[0m
+  [4;35;1mSQL (3.5ms)[0m   [0mCREATE TABLE `order_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mDROP TABLE `order_statuses`[0m
+  [4;36;1mSQL (74.3ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mDROP TABLE `site_news`[0m
+  [4;35;1mSQL (5.1ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mDROP TABLE `user_types`[0m
+  [4;36;1mSQL (4.6ms)[0m   [0;1mCREATE TABLE `user_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mDROP TABLE `user_status`[0m
+  [4;35;1mSQL (12.2ms)[0m   [0mCREATE TABLE `user_status` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090716060850')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSHOW FIELDS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `order_statuses`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `order_suits`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `order_suits`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_suits`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `orders`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `orders`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `site_news`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `site_news`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `site_news`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `user_status`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `user_status`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_status`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `user_types`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `user_types`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_types`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `admins`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `admins`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `admins`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `order_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `order_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `order_suits`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `user_status`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `user_status`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_status`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `user_types`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `user_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (6.2ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `admins`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `admins`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `admins`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `order_suits`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `order_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `order_suits`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `user_status`[0m
+  [4;35;1mSQL (5.2ms)[0m   [0mdescribe `user_status`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `user_status`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `user_types`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `user_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `admins`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `admins`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `admins`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `order_suits`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `order_suits`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `order_suits`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `user_status`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `user_status`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_status`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `user_types`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `user_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (15.1ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (99.9ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (6.2ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `user_type_id` int(11), `user_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (6.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.6ms)[0m   [0mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `order_suit_id` int(11), `order_level_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.2ms)[0m   [0mCREATE TABLE `order_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.6ms)[0m   [0mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (6.6ms)[0m   [0mCREATE TABLE `user_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.8ms)[0m   [0mCREATE TABLE `user_status` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (6.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (30.5ms)[0m   [0mDROP TABLE `users`[0m
+  [4;36;1mSQL (105.3ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `user_type_id` int(11), `user_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (6.8ms)[0m   [0;1mDROP TABLE `admins`[0m
+  [4;35;1mSQL (9.6ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mDROP TABLE `orders`[0m
+  [4;36;1mSQL (4.9ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `order_suit_id` int(11), `order_level_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (54.4ms)[0m   [0;1mDROP TABLE `order_suits`[0m
+  [4;35;1mSQL (8.2ms)[0m   [0mCREATE TABLE `order_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mDROP TABLE `order_statuses`[0m
+  [4;36;1mSQL (4.1ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mDROP TABLE `site_news`[0m
+  [4;35;1mSQL (5.9ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (11.1ms)[0m   [0mDROP TABLE `user_types`[0m
+  [4;36;1mSQL (55.6ms)[0m   [0;1mCREATE TABLE `user_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (14.0ms)[0m   [0;1mDROP TABLE `user_status`[0m
+  [4;35;1mSQL (6.9ms)[0m   [0mCREATE TABLE `user_status` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090716060850')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (14.2ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mSHOW FIELDS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `order_statuses`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `order_suits`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `order_suits`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_suits`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mdescribe `orders`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `orders`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `site_news`[0m
+  [4;35;1mSQL (3.1ms)[0m   [0mdescribe `site_news`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `site_news`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `user_status`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `user_status`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `user_status`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `user_types`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `user_types`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `user_types`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `users`[0m

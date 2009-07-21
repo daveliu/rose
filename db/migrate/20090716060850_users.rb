@@ -1,3 +1,4 @@
+require "active_record/fixtures"
 class Users < ActiveRecord::Migration
   def self.up
     create_table :users, :force => true do |table|
@@ -53,6 +54,9 @@ class Users < ActiveRecord::Migration
     create_table :user_status, :force => true do |table|
       table.column :value, :string, :limit => 30
     end
+
+    directory = File.dirname(__FILE__) + "/origin_data/"
+    Fixtures.create_fixtures(directory, "users", ".*")
   end
   def self.down
     drop_table :users
