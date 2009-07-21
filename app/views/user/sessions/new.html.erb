@@ -1,6 +1,19 @@
-<%= javascript_include_tag "public/form_validate", "user/forms" %>
-<% form_for :user, :url => {:action => :create} do |form| %>
-  username: <%= form.text_field :username %>
-  password: <%= form.password_field :password %>
-  <%= form.submit "submit" %>
-<% end %>
+<%= javascript_include_tag "prototype", "public/form_validate", "user/forms" %>
+<div class="login">
+  <h1>用户登录</h1>
+  <div style="padding:20px 0;">
+    <% form_for :user, :url => {:action => :create}, :html => {:onsubmit => "onLoginSubmit(this);return false;"} do |form| %>
+      <p>登录邮箱：<br />
+        <%= form.text_field :username, :class => "text-input input-width240" %>
+        <span id="user_username_error" class="error" style="display:none;">请输入用户名</span>
+      </p>
+      <p>登录密码：<br />
+        <%= form.password_field :password, :class => "text-input input-width240" %>
+        <span id="user_password_error" class="error" style="display:none;">请输入密码</span>
+        <a href="#" class="link12bu">忘记密码？</a>
+      </p>
+      <%= form.submit "立即登录" %>
+    <% end %>
+    <p><a href="/user/accounts/new" class="link14ye"><strong>您还没注册？立即注册一个新帐户！</strong></a></p>
+  </div>
+</div>

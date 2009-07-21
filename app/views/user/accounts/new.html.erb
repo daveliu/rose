@@ -1,12 +1,54 @@
-<%= javascript_include_tag "public/form_validate", "user/forms" %>
-<% form_for :user, :url => {:action => :create} do |form| %>
-  username: <%= form.text_field :username %>
-  password: <%= form.password_field :password %>
-  confirm: <%= form.password_field :password, :name => nil %>
-  email: <%= form.text_field :email %>
-  qq: <%= form.text_field :qq %>
-  cell: <%= form.text_field :cell_phone %>
-  phone: <%= form.text_field :phone %>
-  address: <%= form.text_field :address %>
-  <%= form.submit "submit" %>
-<% end %>
+<%= javascript_include_tag "prototype", "public/form_validate", "user/forms", "public/constants" %>
+<div class="login">
+  <h1>新用户注册</h1>
+  <div style="padding: 20px 0pt;">
+    <% form_for :user, :url => {:action => :create}, :html => {:onsubmit => "onSubmitRegister(this);return false;"} do |form| %>
+      <dl class="registerform">
+        <dd><span class="star">*</span> <span class="link14ye2">表示该项必填</span></dd>
+        <dt><span class="star">*</span> 用户名：</dt>
+        <dd>
+          <%= form.text_field :username, :class => "text-input input-width240" %>
+          <span id="user_username_error" class="error" style="display:none;">请输入用户名(长度为6-15位)</span>
+        </dd>
+        <dt><span class="star">*</span> 密码：</dt>
+        <dd>
+          <%= form.password_field :password, :class => "text-input input-width240" %>
+          <span id="user_password_error" class="error" style="display:none;">请输入密码(长度为6-15位)</span>
+        </dd>
+        <dt><span class="star">*</span> 确认密码：</dt>
+        <dd>
+          <input id="user_confirm_password" type="password" class="text-input input-width240" />
+          <span id="user_confirm_password_error" class="error" style="display:none;">两次密码输入不一致</span>
+        </dd>
+        <dt><span class="star">*</span> 邮箱：</dt>
+        <dd>
+          <%= form.text_field :email, :class => "text-input input-width240" %>
+          <span id="user_email_error" class="error" style="display:none;">请正确填写邮箱</span>
+        </dd>
+        <dt> qq：</dt>
+        <dd>
+          <%= form.text_field :qq, :class => "text-input input-width240" %>
+        </dd>
+        <dt> 手机：</dt>
+        <dd>
+          <%= form.text_field :cell_phone, :class => "text-input input-width240" %>
+        </dd>
+        <dt> 固定电话：</dt>
+        <dd>
+          <%= form.text_field :phone, :class => "text-input input-width240" %>
+          <span id="user_phone_error" class="error" style="display:none;">手机和固定电话请至少填写一项</span>
+        </dd>
+        <dt> 地址：</dt>
+        <dd>
+          <%= form.text_field :address, :class => "text-input input-width240" %>
+        </dd>
+        <dt> 身份证号码：</dt>
+        <dd>
+          <%= form.text_field :id_card, :class => "text-input input-width240" %>
+        </dd>
+        <dd><%= form.submit "立即注册", :class => "btn01" %></dd>
+      </dl>
+      <div class="clr"></div>
+    <% end %>
+  </div>
+</div>

@@ -9,6 +9,7 @@ class Users < ActiveRecord::Migration
       table.column :qq, :string, :limit => 15
       table.column :cell_phone, :string, :limit => 15
       table.column :phone, :string, :limit => 15
+      table.column :id_card, :string, :limit => 30
       table.column :user_type_id, :integer
       table.column :user_status_id, :integer
       table.column :created_at, :datetime

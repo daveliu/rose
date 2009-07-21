@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.string   "qq",             :limit => 15
     t.string   "cell_phone",     :limit => 15
     t.string   "phone",          :limit => 15
+    t.string   "id_card",        :limit => 30
     t.integer  "user_type_id"
     t.integer  "user_status_id"
     t.datetime "created_at"

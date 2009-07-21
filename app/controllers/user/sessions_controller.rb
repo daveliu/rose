@@ -1,4 +1,6 @@
 class User::SessionsController < ApplicationController
+  layout "home"
+  
   def new    
   end
 

@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+    background-image:url(/images/body_bg.jpg);
+}
+
+#head { width:1000px; height:74px; margin:auto; background-image:url(/images/head_bg.jpg); background-repeat:no-repeat; text-align:center;}
+#main { width:1000px; margin:auto;}
+#foot { width:1000px; height:55px; padding-top:15px; line-height:180%; margin:auto; background-image:url(/images/foot_bg.jpg); background-repeat:no-repeat; text-align:center; color:#bad8ff;}
+
+.clr { clear:both;}
+
+
+h1 { font-size:30px; color:#FFFFFF; margin:0; padding:0;}
+
+
+dl.registerform { margin:0; padding:0; color:#fff; font-size:14px; line-height:200%;}
+dl.registerform dt,dd{ margin:0; padding:0; float:left; padding:5px;}
+dl.registerform dt{ width:18%; text-align:right;}
+dl.registerform dd{ width:80%;}
+
+
+
+
+.login { background-image:url(/images/login_bg.jpg); background-repeat:no-repeat; background-color:#07161b; min-height:300px; padding:35px 50px 50px 50px;}
+.login p { color:#FFFFFF; font-size:14px; line-height:200%; margin:15px 0;}
+
+
+
+
+
+
+input.text-input { border:none; background-color:#ebf5ff; font-size:14px; font-family:Arial, Helvetica, sans-serif; padding:8px; color:#07161b;}
+input.text-input:hover { background-color:#ffffe6;}
+
+
+.input-width240 { width:240px;}
+
+
+
+
+
+.link12b { font-size:12px; text-decoration:none; color:#bad8ff;}
+.link12b:hover { font-size:12px; text-decoration:underline; color:#ffcc00;}
+
+.link12bu { font-size:12px; text-decoration:underline; color:#b1d7fc;}
+.link12bu:hover { font-size:12px; text-decoration:underline; color:#ffcc00;}
+
+.link14ye { font-size:14px; text-decoration:underline; color:#ffcc00;}
+.link14ye:hover { font-size:14px; text-decoration:underline; color:#ff9900;}
+
+.link14ye2 { font-size:14px; text-decoration:none; color:#ffcc00;}
+.link14ye2:hover { font-size:14px; text-decoration:underline; color:#811a00;}
+
+span.star { font-family:"����"; font-size:14px; color:#FF3300;}
+
+
+.nav { display: inline-block; background-image:url(/images/nav_off.gif); background-repeat:no-repeat; width:97px; height:31px; text-align:center; font-size:16px; font-weight:bold; color:#d19d15; line-height:31px; text-decoration:none; margin:20px 5px 0 10px;}
+.nav:hover { background-image:url(/images/nav_on.gif); background-repeat:no-repeat; color:#ffff7a;}
+
+
+
+.btn01 { display:block; background-image:url(/images/btn_yelw_off.gif); background-repeat:no-repeat; width:120px; height:40px; text-align:center; font-size:16px; font-weight:bold; color:#811a00; line-height:40px; text-decoration:none;}
+.btn01:hover { background-image:url(/images/btn_yelw_on.gif); background-repeat:no-repeat; color:#5f6c00;}
+
+.error {color: red;}
+
