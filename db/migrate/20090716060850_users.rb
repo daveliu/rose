@@ -1,7 +1,7 @@
 require "active_record/fixtures"
 class Users < ActiveRecord::Migration
   def self.up
-    create_table :users, :force => true do |table|
+    create_table :users, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :username, :string, :null => false, :limit => 30
       table.column :password, :string, :null => false, :limit => 50
       table.column :address, :string, :liimit => 200
@@ -15,7 +15,7 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :admins, :force => true do |table|
+    create_table :admins, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :username, :string, :null => false, :limit => 30
       table.column :password, :string, :null => false, :limit => 50
       table.column :account_status_id, :integer
@@ -23,7 +23,7 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :dealers, :force => true do |table|
+    create_table :dealers, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :username, :string, :null => false, :limit => 30
       table.column :password, :string, :null => false, :limit => 50
       table.column :account_status_id, :integer
@@ -32,13 +32,13 @@ class Users < ActiveRecord::Migration
     end
 
     #代练等级
-    create_table :upgrade_levels, :force => true do |table|
+    create_table :upgrade_levels, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
       table.column :price, :float, :null => false
     end
 
     #代练等级日期
-    create_table :upgrade_level_price, :force => true do |table|
+    create_table :upgrade_level_prices, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :upgrade_level_id, :integer, :null => false
       table.column :time, :integer, :null => false
       table.column :factor, :float, :null => false
@@ -46,26 +46,26 @@ class Users < ActiveRecord::Migration
     end
 
     #装备等级
-    create_table :equipment_levels, :force => true do |table|
+    create_table :equipment_levels, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
     #武器or装备
-    create_table :equipment_types, :force => true do |table|
+    create_table :equipment_types, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
     #pvp or pve
-    create_table :equipment_categories, :force => true do |table|
+    create_table :equipment_categories, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
     #副本
-    create_table :instances, :force => true do |table|
+    create_table :instances, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 50
     end
 
-    create_table :equipments, :force => true do |table|
+    create_table :equipments, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :name, :string, :null => false, :limit => 50
       table.column :image_path, :string, :limit => 200
       table.column :equipment_level_id, :integer
@@ -80,12 +80,12 @@ class Users < ActiveRecord::Migration
     end
 
     #pve分类，T7,T8。。。
-    create_table :pve_categories, :force => true do |table|
+    create_table :pve_categories, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
     #pve套装
-    create_table :pve_suits, :force => true do |table|
+    create_table :pve_suits, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :name, :string, :null => false, :limit => 50
       table.column :image_path, :string, :limit => 200
       table.column :price, :float
@@ -95,11 +95,11 @@ class Users < ActiveRecord::Migration
     end
 
     #pvp分类
-    create_table :pvp_categories, :force => true do |table|
+    create_table :pvp_categories, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
-    create_table :pvp_suits, :force => true do |table|
+    create_table :pvp_suits, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :name, :string, :null => false, :limit => 50
       table.column :image, :string, :limit => 200
       table.column :pvp_category_id, :integer
@@ -108,7 +108,7 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :orders, :force => true do |table|
+    create_table :orders, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_code, :string, :null => false, :limit => 20
       table.column :order_status_id, :integer, :null => false
       table.column :game_id, :integer, :null => false
@@ -127,66 +127,66 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :orders_pvp_suits, :force => true, :id => false do |table|
+    create_table :orders_pvp_suits, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :suit_id, :integer
     end
 
-    create_table :orders_pve_suits, :force => true, :id => false do |table|
+    create_table :orders_pve_suits, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :suit_id, :integer
     end
 
-    create_table :order_upgrade_levels, :force => true do |table|
+    create_table :order_upgrade_levels, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :level_id, :integer
     end
 
     #套餐
-    create_table :packages, :force => true do |table|
+    create_table :packages, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :name, :string, :limit => 30
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
     end
 
-    create_table :packages_pve_suits, :force => true, :id => false do |table|
+    create_table :packages_pve_suits, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :suit_id, :integer
     end
 
-    create_table :packages_pvp_suits, :force => true, :id => false do |table|
+    create_table :packages_pvp_suits, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :suit_id, :integer
     end
 
-    create_table :package_upgrade_levels, :force => true do |table|
+    create_table :package_upgrade_levels, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer
       table.column :level_id, :integer
     end
 
-    create_table :games, :force => true do |table|
+    create_table :games, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 20
     end
 
-    create_table :game_areas, :force => true do |table|
+    create_table :game_areas, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :game_id, :integer
       table.column :value, :string, :limit => 20
     end
 
-    create_table :time_types, :force => true do |table|
+    create_table :time_types, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 20
     end
 
-    create_table :game_servers, :force => true do |table|
+    create_table :game_servers, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :game_area_id, :integer
       table.column :value, :string, :limit => 20
     end
 
-    create_table :order_statuses, :force => true do |table|
+    create_table :order_statuses, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :null => false
     end
 
-    create_table :site_news, :force => true do |table|
+    create_table :site_news, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :title, :string, :limit => 100
       table.column :content, :string, :limit => 3000
       table.column :image_path, :string, :limit => 100
@@ -196,7 +196,7 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :site_messages, :force => true do |table|
+    create_table :site_messages, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :title, :string, :limit => 100
       table.column :content, :string, :limit => 1000
       table.column :read, :boolean
@@ -208,14 +208,14 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
     
-    create_table :account_statuses, :force => true do |table|
+    create_table :account_statuses, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 30
     end
 
     directory = File.dirname(__FILE__) + "/origin_data/"
     Fixtures.create_fixtures(directory, "users", ".*")
     Fixtures.create_fixtures(directory, "upgrade_levels", ".*")
-    Fixtures.create_fixtures(directory, "upgrade_level_price", ".*")
+    Fixtures.create_fixtures(directory, "upgrade_level_prices", ".*")
     Fixtures.create_fixtures(directory, "equipment_levels", ".*")
     Fixtures.create_fixtures(directory, "equipment_types", ".*")
     Fixtures.create_fixtures(directory, "equipment_categories", ".*")
@@ -225,8 +225,8 @@ class Users < ActiveRecord::Migration
     Fixtures.create_fixtures(directory, "games", ".*")
     Fixtures.create_fixtures(directory, "game_areas", ".*")
     Fixtures.create_fixtures(directory, "game_servers", ".*")
-    Fixtures.creat_fixtures(directory, "order_statuses", ".*")
-    Fixtures.creat_fixtures(directory, "account_statuses", ".*")
+    Fixtures.create_fixtures(directory, "order_statuses", ".*")
+    Fixtures.create_fixtures(directory, "account_statuses", ".*")
   end
   
   def self.down
@@ -234,7 +234,7 @@ class Users < ActiveRecord::Migration
     drop_table :admins
     drop_table :dealers
     drop_table :upgrade_levels
-    drop_table :upgrade_level_price
+    drop_table :upgrade_level_prices
     drop_table :equipment_levels
     drop_table :equipment_types
     drop_table :equipment_categories

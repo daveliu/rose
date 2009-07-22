@@ -5,5 +5,4 @@ me:
   email: a
   qq: 1
   phone: 1
-  user_type_id: 1
-  user_status_id: 1
+  account_status_id: 1
