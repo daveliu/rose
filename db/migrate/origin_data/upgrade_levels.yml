@@ -1,0 +1,9 @@
+level1:
+  value: 1-70
+  price: 50
+level2:
+  value: 1-80
+  price: 100
+level3:
+  value: 70-80
+  price: 80

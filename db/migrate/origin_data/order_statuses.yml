@@ -1,0 +1,10 @@
+status1:
+  value: 未支付
+status2:
+  value: 已支付
+status3:
+  value: 用户取消
+status4:
+  value: 管理员取消
+status5:
+  value: 已完成
