@@ -1,8 +1,12 @@
 category1:
+  id: 1
   value: T7
 category2:
+  id: 2
   value: T7.5
 category3:
+  id: 3
   value: T8
 category4:
+  id: 4
   value: T8.5

@@ -1,4 +1,6 @@
 type1:
+  id: 1
   value: 装备
 type2:
+  id: 2
   value: 武器

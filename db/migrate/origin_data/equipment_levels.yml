@@ -1,6 +1,9 @@
 level1:
+  id: 1
   value: 80
 level2:
+  id: 2
   value: 100
 level3:
+  id: 3
   value: 120

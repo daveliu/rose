@@ -1,12 +1,16 @@
 area1:
+  id: 1
   game_id: 1
   value: 1区
 area2:
+  id: 2
   game_id: 1
   value: 2区
 area3:
+  id: 3
   game_id: 1
   value: 3区
 area4:
+  id: 4
   game_id: 1
   value: 4区

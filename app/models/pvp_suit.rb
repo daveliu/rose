@@ -1,4 +1,4 @@
 class PvpSuit < ActiveRecord::Base
-  has_many :equipments, :as => :suit
+  has_many :equipment, :as => :suit
   belongs_to :pvp_category
 end

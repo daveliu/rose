@@ -1,24 +1,32 @@
 server1:
+  id: 1
   game_area_id: 1
   value: 服务器11
 server2:
+  id: 2
   game_area_id: 1
   value: 服务器12
 server3:
+  id: 3
   game_area_id: 2
   value: 服务器21
 server4:
+  id: 4
   game_area_id: 2
   value: 服务器22
 server5:
+  id: 5
   game_area_id: 3
   value: 服务器31
 server6:
+  id: 6
   game_area_id: 3
   value: 服务器32
 server7:
+  id: 7
   game_area_id: 4
   value: 服务器41
 server8:
-  game_area_id: 41
-  value: 服务器1
+  id: 8
+  game_area_id: 4
+  value: 服务器42

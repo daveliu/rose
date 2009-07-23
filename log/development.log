@@ -3521,3 +3521,956 @@ Migrating to Users (20090716060850)
   [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
   [4;35;1mSQL (1.0ms)[0m   [0mdescribe `users`[0m
   [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (19.8ms)[0m   [0;1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (4.3ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.7ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `id_card` varchar(30), `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE TABLE `dealers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE TABLE `upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `price` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `upgrade_level_prices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `upgrade_level_id` int(11) NOT NULL, `time` int(11) NOT NULL, `factor` float NOT NULL, `description` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE `equipment_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.1ms)[0m   [0mCREATE TABLE `equipment_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mCREATE TABLE `equipment_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mCREATE TABLE `instances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(50)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `equipments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `equipment_level_id` int(11), `equipment_category_id` int(11), `instance_id` int(11), `suit_id` int(11), `suit_type` varchar(20), `singlesellable` tinyint(1), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `pve_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `pve_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `price` float, `pve_category_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `pvp_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (5.8ms)[0m   [0mCREATE TABLE `pvp_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image` varchar(200), `pvp_category_id` int(11), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.3ms)[0m   [0mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `order_status_id` int(11) NOT NULL, `pay_type_id` int(11) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `game_server_id` int(11) NOT NULL, `game_account` varchar(50) NOT NULL, `game_password` varchar(50) NOT NULL, `delay_days` int(11), `time_type_id` int(11), `agreement_date` datetime, `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `orders_pvp_suits` (`order_id` int(11), `suit_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `orders_pve_suits` (`order_id` int(11), `suit_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `order_upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_id` int(11), `level_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `packages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `packages_pve_suits` (`order_id` int(11), `suit_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `packages_pvp_suits` (`order_id` int(11), `suit_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.9ms)[0m   [0mCREATE TABLE `package_upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_id` int(11), `level_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `games` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.5ms)[0m   [0mCREATE TABLE `game_areas` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE `time_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE `game_servers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_area_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.5ms)[0m   [0mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.9ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `owner_type` varchar(20), `owner_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE `site_messages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(1000), `read` tinyint(1), `receiver_type` varchar(30), `receiver_id` int(11), `sender_type` varchar(30), `sender_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (4.2ms)[0m   [0mCREATE TABLE `account_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (8.7ms)[0m   [0mCREATE TABLE `pay_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `description` varchar(200)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090716060850')[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `account_statuses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `account_statuses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `account_statuses`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `admins`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `admins`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `admins`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `dealers`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `dealers`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `dealers`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `equipment_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `equipment_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `equipment_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `equipments`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `equipments`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipments`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `game_areas`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `game_areas`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `game_areas`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `game_servers`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `game_servers`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `game_servers`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `games`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `games`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `games`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `instances`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `instances`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `instances`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `order_statuses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `order_statuses`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `order_upgrade_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `order_upgrade_levels`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `orders`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `orders`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `orders_pve_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders_pve_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `orders_pvp_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `orders_pvp_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `package_upgrade_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `package_upgrade_levels`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `packages`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `packages`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `packages`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `packages_pve_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `packages_pve_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages_pve_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `packages_pvp_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `packages_pvp_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `pay_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `pay_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pay_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `pve_categories`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `pve_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pve_categories`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `pve_suits`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `pve_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pve_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `pvp_categories`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `pvp_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pvp_categories`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `pvp_suits`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pvp_suits`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `site_messages`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `site_messages`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `site_messages`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `site_news`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `site_news`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `site_news`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `time_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `time_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `time_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_level_prices`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `upgrade_level_prices`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `upgrade_levels`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mDealer Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `dealers`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mBEGIN[0m
+  [4;36;1mDealer Create (0.3ms)[0m   [0;1mINSERT INTO `dealers` (`updated_at`, `username`, `password`, `created_at`) VALUES('2009-07-23 06:33:05', 'a', 'a', '2009-07-23 06:33:05')[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSiteMessage Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `site_messages`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mDealer Load (0.3ms)[0m   [0mSELECT * FROM `dealers` LIMIT 1[0m
+  [4;36;1mDealer Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `dealers`[0m
+  [4;35;1mSiteMessage Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `site_messages`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mDealer Load (5.0ms)[0m   [0;1mSELECT * FROM `dealers` LIMIT 1[0m
+  [4;35;1mDealer Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `dealers`[0m
+  [4;36;1mSiteMessage Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `site_messages`[0m
+  [4;35;1mSiteMessage Load (9.5ms)[0m   [0mSELECT * FROM `site_messages` WHERE (`site_messages`.receiver_id = 2 AND `site_messages`.receiver_type = 'Dealer') [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSiteMessage Create (0.3ms)[0m   [0mINSERT INTO `site_messages` (`receiver_id`, `updated_at`, `title`, `receiver_type`, `read`, `sender_type`, `content`, `sender_id`, `created_at`) VALUES(2, '2009-07-23 06:37:11', 'a', 'Dealer', 0, NULL, 'a', NULL, '2009-07-23 06:37:11')[0m
+  [4;36;1mSQL (3.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mEquipment Columns (0.0ms)[0m   [0mMysql::Error: Table 'rose_development.equipment' doesn't exist: SHOW FIELDS FROM `equipment`[0m
+  [4;36;1mEquipment Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mEquipment Create (0.4ms)[0m   [0;1mINSERT INTO `equipment` (`name`, `equipment_level_id`, `equipment_category_id`, `updated_at`, `suit_id`, `singlesellable`, `price`, `instance_id`, `suit_type`, `image_path`, `created_at`) VALUES('aa', NULL, NULL, '2009-07-23 06:39:21', NULL, NULL, 30.0, NULL, NULL, NULL, '2009-07-23 06:39:21')[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mEquipment Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mEquipment Load (0.6ms)[0m   [0mSELECT * FROM `equipment` LIMIT 1[0m
+  [4;36;1mEquipment Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mEquipmentLevel Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `equipment_levels`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mEquipmentLevel Create (0.3ms)[0m   [0mINSERT INTO `equipment_levels` (`value`) VALUES('100')[0m
+  [4;36;1mEquipment Update (0.4ms)[0m   [0;1mUPDATE `equipment` SET `equipment_level_id` = 4, `updated_at` = '2009-07-23 06:43:11' WHERE `id` = 1[0m
+  [4;35;1mSQL (20.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mEquipmentLevel Load (0.3ms)[0m   [0;1mSELECT * FROM `equipment_levels` LIMIT 1[0m
+  [4;35;1mEquipment Load (0.4ms)[0m   [0mSELECT * FROM `equipment` WHERE (`equipment`.equipment_level_id = 1) [0m
+  [4;36;1mEquipmentLevel Load (0.3ms)[0m   [0;1mSELECT * FROM `equipment_levels` LIMIT 1[0m
+  [4;35;1mEquipmentLevel Load (0.4ms)[0m   [0mSELECT * FROM `equipment_levels` ORDER BY equipment_levels.id DESC LIMIT 1[0m
+  [4;36;1mEquipment Load (0.5ms)[0m   [0;1mSELECT * FROM `equipment` WHERE (`equipment`.equipment_level_id = 4) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPveSuit Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPveSuit Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `pve_suits`[0m
+  [4;35;1mEquipment Load (0.4ms)[0m   [0mSELECT * FROM `equipment` LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mEquipment Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `equipment`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPveSuit Create (0.3ms)[0m   [0;1mINSERT INTO `pve_suits` (`name`, `updated_at`, `price`, `image_path`, `pve_category_id`, `created_at`) VALUES('suit', '2009-07-23 06:47:43', 200.0, NULL, NULL, '2009-07-23 06:47:43')[0m
+  [4;35;1mEquipment Update (0.4ms)[0m   [0mUPDATE `equipment` SET `suit_id` = 1, `suit_type` = 'PveSuit', `updated_at` = '2009-07-23 06:47:43' WHERE `id` = 1[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mOrder Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mOrderStatus Load (0.3ms)[0m   [0;1mSELECT * FROM `order_statuses` LIMIT 1[0m
+  [4;35;1mOrderStatus Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `order_statuses`[0m
+  [4;36;1mGame Load (0.3ms)[0m   [0;1mSELECT * FROM `games` LIMIT 1[0m
+  [4;35;1mGame Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `games`[0m
+  [4;36;1mGameServer Load (0.4ms)[0m   [0;1mSELECT * FROM `game_servers` LIMIT 1[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mGameServer Load (0.3ms)[0m   [0;1mSELECT * FROM `game_servers` LIMIT 1[0m
+  [4;35;1mGameServer Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `game_servers`[0m
+  [4;36;1mTimeType Load (0.4ms)[0m   [0;1mSELECT * FROM `time_types` LIMIT 1[0m
+  [4;35;1mOrderStatus Load (0.4ms)[0m   [0mSELECT * FROM `order_statuses` LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mOrder Create (0.0ms)[0m   [0mMysql::Error: Column 'game_area_id' cannot be null: INSERT INTO `orders` (`game_area_id`, `qq`, `delay_days`, `updated_at`, `game_server_id`, `time_type_id`, `game_account`, `order_status_id`, `cell_phone`, `agreement_date`, `phone`, `order_code`, `game_id`, `game_password`, `pay_type_id`, `email`, `created_at`) VALUES(NULL, NULL, NULL, '2009-07-23 06:56:14', 685554552, NULL, NULL, 813376310, NULL, NULL, NULL, 'aa', 748358884, NULL, NULL, NULL, '2009-07-23 06:56:14')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mGameArea Load (0.3ms)[0m   [0mSELECT * FROM `game_areas` LIMIT 1[0m
+  [4;36;1mGameArea Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `game_areas`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mOrder Create (0.0ms)[0m   [0;1mMysql::Error: Column 'game_account' cannot be null: INSERT INTO `orders` (`game_area_id`, `qq`, `delay_days`, `updated_at`, `game_server_id`, `time_type_id`, `game_account`, `order_status_id`, `cell_phone`, `agreement_date`, `phone`, `order_code`, `game_id`, `game_password`, `pay_type_id`, `email`, `created_at`) VALUES(602659767, NULL, NULL, '2009-07-23 06:56:14', 685554552, NULL, NULL, 813376310, NULL, NULL, NULL, 'aa', 748358884, NULL, NULL, NULL, '2009-07-23 06:56:14')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mOrder Create (0.0ms)[0m   [0mMysql::Error: Column 'pay_type_id' cannot be null: INSERT INTO `orders` (`game_area_id`, `qq`, `delay_days`, `updated_at`, `game_server_id`, `time_type_id`, `game_account`, `order_status_id`, `cell_phone`, `agreement_date`, `phone`, `order_code`, `game_id`, `game_password`, `pay_type_id`, `email`, `created_at`) VALUES(602659767, NULL, NULL, '2009-07-23 06:56:14', 685554552, NULL, 'a', 813376310, NULL, NULL, NULL, 'aa', 748358884, 'a', NULL, NULL, '2009-07-23 06:56:14')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mOrder Create (0.4ms)[0m   [0;1mINSERT INTO `orders` (`game_area_id`, `qq`, `delay_days`, `updated_at`, `game_server_id`, `time_type_id`, `game_account`, `order_status_id`, `cell_phone`, `agreement_date`, `phone`, `order_code`, `game_id`, `game_password`, `pay_type_id`, `email`, `created_at`) VALUES(602659767, NULL, NULL, '2009-07-23 06:56:14', 685554552, NULL, 'a', 813376310, NULL, NULL, NULL, 'aa', 748358884, 'a', 1, NULL, '2009-07-23 06:56:14')[0m
+  [4;35;1morders_pve_suits Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO `orders_pve_suits` (`order_id`) VALUES (1)[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mOrder Load (0.5ms)[0m   [0;1mSELECT * FROM `orders` LIMIT 1[0m
+  [4;35;1mOrder Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1morders_pve_suits Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;35;1mPveSuit Load (0.0ms)[0m   [0mMysql::Error: Unknown column 'orders_pve_suits.pve_suit_id' in 'on clause': SELECT * FROM `pve_suits` INNER JOIN `orders_pve_suits` ON `pve_suits`.id = `orders_pve_suits`.pve_suit_id WHERE (`orders_pve_suits`.order_id = 1 ) [0m
+  [4;36;1mPveSuit Load (0.7ms)[0m   [0;1mSELECT * FROM `pve_suits` INNER JOIN `orders_pve_suits` ON `pve_suits`.id = `orders_pve_suits`.pve_suit_id WHERE (`orders_pve_suits`.order_id = 1 ) [0m
+  [4;35;1mPveSuit Load (0.4ms)[0m   [0mSELECT * FROM `pve_suits` LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPveSuit Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO `orders_pve_suits` (`order_id`) VALUES (1)[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mOrder Load (0.8ms)[0m   [0;1mSELECT * FROM `orders` LIMIT 1[0m
+  [4;35;1mPveSuit Load (0.4ms)[0m   [0mSELECT * FROM `pve_suits` LIMIT 1[0m
+  [4;36;1mPveSuit Load (0.3ms)[0m   [0;1mSELECT * FROM `pve_suits` INNER JOIN `orders_pve_suits` ON `pve_suits`.id = `orders_pve_suits`.pve_suit_id WHERE (`orders_pve_suits`.order_id = 1 ) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO `orders_pve_suits` (`order_id`) VALUES (1)[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPveSuit Load (0.4ms)[0m   [0;1mSELECT * FROM `pve_suits` LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO `orders_pve_suits` (`order_id`) VALUES (1)[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (30.7ms)[0m   [0;1mDROP TABLE `users`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mDROP TABLE `admins`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `dealers`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `upgrade_levels`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `upgrade_level_prices`[0m
+  [4;35;1mSQL (8.9ms)[0m   [0mDROP TABLE `equipment_levels`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `equipment_types`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `equipment_categories`[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mDROP TABLE `instances`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mDROP TABLE `equipment`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mDROP TABLE `pve_categories`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mDROP TABLE `pve_suits`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `pvp_categories`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mDROP TABLE `pvp_suits`[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mDROP TABLE `orders`[0m
+  [4;35;1mSQL (8.3ms)[0m   [0mDROP TABLE `orders_pvp_suits`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mDROP TABLE `orders_pve_suits`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `order_upgrade_levels`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE `packages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mDROP TABLE `packages_pve_suits`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mDROP TABLE `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `package_upgrade_levels`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `games`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `game_areas`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE `time_types`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mDROP TABLE `game_servers`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE `order_statuses`[0m
+  [4;35;1mSQL (13.3ms)[0m   [0mDROP TABLE `site_news`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE `site_messages`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mDROP TABLE `account_statuses`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `pay_types`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090716060850'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `id_card` varchar(30), `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (11.0ms)[0m   [0;1mCREATE TABLE `dealers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `price` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `upgrade_level_prices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `upgrade_level_id` int(11) NOT NULL, `time` int(11) NOT NULL, `factor` float NOT NULL, `description` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `equipment_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `equipment_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `equipment_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `instances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(50)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.5ms)[0m   [0;1mCREATE TABLE `equipment` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `equipment_level_id` int(11), `equipment_category_id` int(11), `instance_id` int(11), `suit_id` int(11), `suit_type` varchar(20), `singlesellable` tinyint(1), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `pve_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `pve_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `price` float, `pve_category_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `pvp_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `pvp_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image` varchar(200), `pvp_category_id` int(11), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `order_status_id` int(11) NOT NULL, `pay_type_id` int(11) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `game_server_id` int(11) NOT NULL, `game_account` varchar(50) NOT NULL, `game_password` varchar(50) NOT NULL, `delay_days` int(11), `time_type_id` int(11), `agreement_date` datetime, `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (278.5ms)[0m   [0;1mCREATE TABLE `orders_pvp_suits` (`order_id` int(11) NOT NULL, `pvp_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `orders_pve_suits` (`order_id` int(11) NOT NULL, `pve_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `order_upgrade_levels` (`order_id` int(11) NOT NULL, `level_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE `packages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `packages_pve_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `packages_pvp_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `package_upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_id` int(11), `level_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `games` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `game_areas` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE `time_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `game_servers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_area_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `owner_type` varchar(20), `owner_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE `site_messages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(1000), `read` tinyint(1), `receiver_type` varchar(30), `receiver_id` int(11), `sender_type` varchar(30), `sender_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE `account_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `pay_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `description` varchar(200)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090716060850')[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `account_statuses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `dealers`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `dealers`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `dealers`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `equipment`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `equipment`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `equipment_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `equipment_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `equipment_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `game_areas`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `game_areas`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `game_areas`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `game_servers`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `game_servers`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `game_servers`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `games`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `games`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `games`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `instances`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `instances`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `instances`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `order_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `orders_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `orders_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `package_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `packages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `packages_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `packages_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `pay_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `pay_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `pay_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pve_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pvp_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pvp_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `site_messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `site_messages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `site_messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `time_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `time_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `time_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `upgrade_level_prices`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `upgrade_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mOrder Load (0.4ms)[0m   [0;1mSELECT * FROM `orders` LIMIT 1[0m
+  [4;35;1mOrder Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mOrderStatus Load (0.4ms)[0m   [0;1mSELECT * FROM `order_statuses` LIMIT 1[0m
+  [4;35;1mOrderStatus Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `order_statuses`[0m
+  [4;36;1mGame Load (0.3ms)[0m   [0;1mSELECT * FROM `games` LIMIT 1[0m
+  [4;35;1mGame Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `games`[0m
+  [4;36;1mGameArea Load (0.5ms)[0m   [0;1mSELECT * FROM `game_areas` LIMIT 1[0m
+  [4;35;1mGameArea Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `game_areas`[0m
+  [4;36;1mGameServer Load (0.4ms)[0m   [0;1mSELECT * FROM `game_servers` LIMIT 1[0m
+  [4;35;1mGameServer Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `game_servers`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mOrder Create (0.5ms)[0m   [0mINSERT INTO `orders` (`game_area_id`, `qq`, `delay_days`, `updated_at`, `game_server_id`, `time_type_id`, `game_account`, `order_status_id`, `cell_phone`, `agreement_date`, `phone`, `order_code`, `game_id`, `game_password`, `pay_type_id`, `email`, `created_at`) VALUES(602659767, NULL, NULL, '2009-07-23 07:18:42', 685554552, NULL, 'a', 813376310, NULL, NULL, NULL, 'ccc', 748358884, 'aa', 1, NULL, '2009-07-23 07:18:42')[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPveSuit Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPveSuit Create (0.4ms)[0m   [0mINSERT INTO `pve_suits` (`name`, `updated_at`, `price`, `image_path`, `pve_category_id`, `created_at`) VALUES('suit', '2009-07-23 07:19:06', NULL, NULL, NULL, '2009-07-23 07:19:06')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1morders_pve_suits Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO `orders_pve_suits` (`order_id`, `pve_suit_id`) VALUES (1, 1)[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mPveSuit Load (0.4ms)[0m   [0mSELECT * FROM `pve_suits` INNER JOIN `orders_pve_suits` ON `pve_suits`.id = `orders_pve_suits`.pve_suit_id WHERE (`orders_pve_suits`.order_id = 1 ) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mUpgradeLevel Load (0.5ms)[0m   [0;1mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mOrder Load (0.3ms)[0m   [0mSELECT * FROM `orders` LIMIT 1[0m
+  [4;36;1mOrder Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mUpgradeLevel Load (0.3ms)[0m   [0mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;36;1mUpgradeLevel Load (0.0ms)[0m   [0;1mMysql::Error: Unknown column 'upgrade_levels.order_id' in 'where clause': SELECT * FROM `upgrade_levels` WHERE (`upgrade_levels`.order_id = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mOrder Load (0.4ms)[0m   [0mSELECT * FROM `orders` LIMIT 1[0m
+  [4;36;1mOrder Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mUpgradeLevel Load (0.4ms)[0m   [0mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;36;1mOrderUpgradeLevel Load (0.4ms)[0m   [0;1mSELECT * FROM `order_upgrade_levels` WHERE (`order_upgrade_levels`.order_id = 1) LIMIT 1[0m
+  [4;35;1mUpgradeLevel Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;36;1mOrderUpgradeLevel Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;35;1mUpgradeLevel Load (0.0ms)[0m   [0mMysql::Error: Unknown column 'order_upgrade_levels.upgrade_level_id' in 'on clause': SELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;36;1mUpgradeLevel Load (0.0ms)[0m   [0;1mMysql::Error: Unknown column 'order_upgrade_levels.upgrade_level_id' in 'on clause': SELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;35;1mUpgradeLevel Load (0.0ms)[0m   [0mMysql::Error: Unknown column 'order_upgrade_levels.upgrade_level_id' in 'on clause': SELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;36;1mUpgradeLevel Load (0.4ms)[0m   [0;1mSELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;35;1mUpgradeLevel Load (0.3ms)[0m   [0mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mOrder Load (0.3ms)[0m   [0;1mSELECT * FROM `orders` LIMIT 1[0m
+  [4;35;1mOrder Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mUpgradeLevel Load (0.4ms)[0m   [0;1mSELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;35;1mUpgradeLevel Load (0.3ms)[0m   [0mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;36;1mOrderUpgradeLevel Load (0.2ms)[0m   [0;1mSELECT * FROM `order_upgrade_levels` WHERE (`order_upgrade_levels`.order_id = 1) LIMIT 1[0m
+  [4;35;1mUpgradeLevel Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;36;1mOrderUpgradeLevel Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mOrderUpgradeLevel Create (0.3ms)[0m   [0;1mINSERT INTO `order_upgrade_levels` (`order_id`, `upgrade_level_id`) VALUES(1, 912184764)[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mOrderUpgradeLevel Load (0.3ms)[0m   [0;1mSELECT * FROM `order_upgrade_levels` WHERE (`order_upgrade_levels`.order_id = 1) LIMIT 1[0m
+  [4;35;1mUpgradeLevel Load (0.4ms)[0m   [0mSELECT `upgrade_levels`.* FROM `upgrade_levels` INNER JOIN `order_upgrade_levels` ON `upgrade_levels`.id = `order_upgrade_levels`.upgrade_level_id WHERE ((`order_upgrade_levels`.order_id = 1)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mUpgradeLevel Load (0.3ms)[0m   [0;1mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUpgradeLevel Load (0.3ms)[0m   [0mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;36;1mUpgradeLevel Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;35;1mUpgradeLevelPrice Load (1.2ms)[0m   [0mSELECT * FROM `upgrade_level_prices` WHERE (`upgrade_level_prices`.upgrade_level_id = 912184764) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (23.0ms)[0m   [0;1mDROP TABLE `users`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mDROP TABLE `admins`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mDROP TABLE `dealers`[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mDROP TABLE `upgrade_levels`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mDROP TABLE `upgrade_level_prices`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mDROP TABLE `equipment_levels`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `equipment_types`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `equipment_categories`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `instances`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mDROP TABLE `equipment`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `pve_categories`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mDROP TABLE `pve_suits`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `pvp_categories`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mDROP TABLE `pvp_suits`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `orders`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDROP TABLE `orders_pvp_suits`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `orders_pve_suits`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mDROP TABLE `order_upgrade_levels`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mDROP TABLE `packages`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDROP TABLE `packages_pve_suits`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE `packages_pvp_suits`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDROP TABLE `package_upgrade_levels`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `games`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `game_areas`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mDROP TABLE `time_types`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `game_servers`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mDROP TABLE `order_statuses`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `site_news`[0m
+  [4;36;1mSQL (13.6ms)[0m   [0;1mDROP TABLE `site_messages`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mDROP TABLE `account_statuses`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `pay_types`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090716060850'[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `id_card` varchar(30), `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (7.2ms)[0m   [0;1mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `dealers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.8ms)[0m   [0;1mCREATE TABLE `upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `price` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE `upgrade_level_prices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `upgrade_level_id` int(11) NOT NULL, `time` int(11) NOT NULL, `factor` float NOT NULL, `description` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `equipment_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE `equipment_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `equipment_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE `instances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(50)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `equipment` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `equipment_level_id` int(11), `equipment_category_id` int(11), `instance_id` int(11), `suit_id` int(11), `suit_type` varchar(20), `singlesellable` tinyint(1), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (10.5ms)[0m   [0;1mCREATE TABLE `pve_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (6.2ms)[0m   [0;1mCREATE TABLE `pve_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `price` float, `pve_category_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `pvp_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `pvp_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image` varchar(200), `pvp_category_id` int(11), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `order_status_id` int(11) NOT NULL, `pay_type_id` int(11) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `game_server_id` int(11) NOT NULL, `game_account` varchar(50) NOT NULL, `game_password` varchar(50) NOT NULL, `delay_days` int(11), `time_type_id` int(11), `agreement_date` datetime, `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `orders_pvp_suits` (`order_id` int(11) NOT NULL, `pvp_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (12.6ms)[0m   [0;1mCREATE TABLE `orders_pve_suits` (`order_id` int(11) NOT NULL, `pve_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mCREATE TABLE `order_upgrade_levels` (`order_id` int(11) NOT NULL, `upgrade_level_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `packages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.5ms)[0m   [0;1mCREATE TABLE `packages_pve_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `packages_pvp_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `package_upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_id` int(11), `level_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `games` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `game_areas` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `time_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mCREATE TABLE `game_servers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_area_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (3.8ms)[0m   [0;1mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `owner_type` varchar(20), `owner_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (6.2ms)[0m   [0;1mCREATE TABLE `site_messages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(1000), `read` tinyint(1), `receiver_type` varchar(30), `receiver_id` int(11), `sender_type` varchar(30), `sender_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (14.9ms)[0m   [0;1mCREATE TABLE `account_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (5.7ms)[0m   [0;1mCREATE TABLE `pay_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `description` varchar(200)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `account_statuses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `dealers`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `dealers`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `dealers`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `equipment`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipment`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `equipment_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `equipment_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `equipment_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `game_areas`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `game_areas`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `game_areas`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `game_servers`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `game_servers`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `game_servers`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `games`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `games`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `games`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `instances`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `instances`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `instances`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `order_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `orders_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `orders_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `package_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `packages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `packages_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `packages_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `pay_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `pay_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pay_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pve_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pve_suits`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pvp_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pvp_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `site_messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `site_messages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `site_messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `time_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `time_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `time_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `upgrade_level_prices`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `upgrade_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to Users (20090716060850)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mDROP TABLE `users`[0m
+  [4;36;1mSQL (24.1ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `address` varchar(255), `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `id_card` varchar(30), `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `admins`[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mCREATE TABLE `admins` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `account_status_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mDROP TABLE `dealers`[0m
+  [4;36;1mSQL (3.7ms)[0m   [0;1mCREATE TABLE `dealers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(30) NOT NULL, `password` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mDROP TABLE `upgrade_levels`[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mCREATE TABLE `upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `price` float NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (6.3ms)[0m   [0mDROP TABLE `upgrade_level_prices`[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE `upgrade_level_prices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `upgrade_level_id` int(11) NOT NULL, `time` int(11) NOT NULL, `factor` float NOT NULL, `description` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `equipment_levels`[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mCREATE TABLE `equipment_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mDROP TABLE `equipment_types`[0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mCREATE TABLE `equipment_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `equipment_categories`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE `equipment_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mDROP TABLE `instances`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mCREATE TABLE `instances` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(50)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `equipment`[0m
+  [4;35;1mSQL (15.4ms)[0m   [0mCREATE TABLE `equipment` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `equipment_level_id` int(11), `equipment_category_id` int(11), `instance_id` int(11), `suit_id` int(11), `suit_type` varchar(20), `singlesellable` tinyint(1), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `pve_categories`[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `pve_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `pve_suits`[0m
+  [4;35;1mSQL (6.6ms)[0m   [0mCREATE TABLE `pve_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image_path` varchar(200), `price` float, `pve_category_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mDROP TABLE `pvp_categories`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mCREATE TABLE `pvp_categories` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (5.1ms)[0m   [0;1mDROP TABLE `pvp_suits`[0m
+  [4;35;1mSQL (3.5ms)[0m   [0mCREATE TABLE `pvp_suits` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(50) NOT NULL, `image` varchar(200), `pvp_category_id` int(11), `price` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mDROP TABLE `orders`[0m
+  [4;36;1mSQL (4.3ms)[0m   [0;1mCREATE TABLE `orders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_code` varchar(20) NOT NULL, `order_status_id` int(11) NOT NULL, `pay_type_id` int(11) NOT NULL, `game_id` int(11) NOT NULL, `game_area_id` int(11) NOT NULL, `game_server_id` int(11) NOT NULL, `game_account` varchar(50) NOT NULL, `game_password` varchar(50) NOT NULL, `delay_days` int(11), `time_type_id` int(11), `agreement_date` datetime, `email` varchar(30), `qq` varchar(15), `cell_phone` varchar(15), `phone` varchar(15), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `orders_pvp_suits`[0m
+  [4;35;1mSQL (3.4ms)[0m   [0mCREATE TABLE `orders_pvp_suits` (`order_id` int(11) NOT NULL, `pvp_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mDROP TABLE `orders_pve_suits`[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE TABLE `orders_pve_suits` (`order_id` int(11) NOT NULL, `pve_suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (26.0ms)[0m   [0;1mDROP TABLE `order_upgrade_levels`[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `order_upgrade_levels` (`order_id` int(11) NOT NULL, `upgrade_level_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.4ms)[0m   [0mDROP TABLE `packages`[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `packages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `packages_pve_suits`[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mCREATE TABLE `packages_pve_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mDROP TABLE `packages_pvp_suits`[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `packages_pvp_suits` (`order_id` int(11) NOT NULL, `suit_id` int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mDROP TABLE `package_upgrade_levels`[0m
+  [4;35;1mSQL (3.3ms)[0m   [0mCREATE TABLE `package_upgrade_levels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `order_id` int(11), `level_id` int(11)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mDROP TABLE `games`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mCREATE TABLE `games` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mDROP TABLE `game_areas`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE `game_areas` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mDROP TABLE `time_types`[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE `time_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mDROP TABLE `game_servers`[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `game_servers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `game_area_id` int(11), `value` varchar(20)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (33.2ms)[0m   [0mDROP TABLE `order_statuses`[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `order_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(255) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mDROP TABLE `site_news`[0m
+  [4;35;1mSQL (3.3ms)[0m   [0mCREATE TABLE `site_news` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(3000), `image_path` varchar(100), `owner_type` varchar(20), `owner_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mDROP TABLE `site_messages`[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `site_messages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(100), `content` varchar(1000), `read` tinyint(1), `receiver_type` varchar(30), `receiver_id` int(11), `sender_type` varchar(30), `sender_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mDROP TABLE `account_statuses`[0m
+  [4;35;1mSQL (3.1ms)[0m   [0mCREATE TABLE `account_statuses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mDROP TABLE `pay_types`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `pay_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `value` varchar(30), `description` varchar(200)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090716060850')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `account_statuses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `account_statuses`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `admins`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `admins`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `admins`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `dealers`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `dealers`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `dealers`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `equipment`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `equipment`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `equipment`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `equipment_categories`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_categories`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `equipment_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `equipment_levels`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `equipment_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `equipment_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `game_areas`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `game_areas`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `game_areas`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `game_servers`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `game_servers`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `game_servers`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `games`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `games`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `games`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `instances`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `instances`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW KEYS FROM `instances`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `order_statuses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `order_statuses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `order_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `order_upgrade_levels`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `orders`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `orders`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `orders_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `orders_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `orders_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `orders_pvp_suits`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `package_upgrade_levels`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `package_upgrade_levels`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `packages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `packages_pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `packages_pve_suits`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `packages_pvp_suits`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `packages_pvp_suits`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `pay_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `pay_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pay_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pve_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pve_categories`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pve_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pve_suits`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW FIELDS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `pvp_categories`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `pvp_categories`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `pvp_suits`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `pvp_suits`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `site_messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `site_messages`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `site_messages`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `site_news`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `site_news`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `site_news`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `time_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mdescribe `time_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `time_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `upgrade_level_prices`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `upgrade_level_prices`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `upgrade_levels`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `upgrade_levels`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mUpgradeLevel Load (0.3ms)[0m   [0;1mSELECT * FROM `upgrade_levels` LIMIT 1[0m
+  [4;35;1mUpgradeLevelPrice Load (0.4ms)[0m   [0mSELECT * FROM `upgrade_level_prices` WHERE (`upgrade_level_prices`.upgrade_level_id = 1) [0m
+  [4;36;1mUpgradeLevelPrice Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `upgrade_level_prices`[0m

@@ -1,0 +1,6 @@
+type1:
+    id: 1
+    value: 款到后开始计时
+type2:
+    id: 2
+    value: 按约定时间开始计时

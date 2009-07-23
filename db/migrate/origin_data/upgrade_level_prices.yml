@@ -1,44 +1,53 @@
 price1:
+  id: 1
   upgrade_level_id: 1
   time: 3
   factor: 1.5
   description: 3-7天
 price2:
+  id: 2
   upgrade_level_id: 1
   time: 7
   factor: 1.5
   description: 7-10天
 price3:
+  id: 3
   upgrade_level_id: 1
   time: 10
   factor: 1
   description: 10-15天
 price4:
+  id: 4
   upgrade_level_id: 2
   time: 3
   factor: 1.5
   description: 3-7天
 price5:
+  id: 5
   upgrade_level_id: 2
   time: 7
   factor: 1.5
   description: 7-10天
 price6:
+  id: 6
   upgrade_level_id: 2
   time: 10
   factor: 1
   description: 10-15天
 price7:
+  id: 7
   upgrade_level_id: 3
   time: 3
   factor: 1.5
   description: 3-7天
 price8:
+  id: 8
   upgrade_level_id: 3
   time: 7
   factor: 1.5
   description: 7-10天
 price9:
+  id: 9
   upgrade_level_id: 3
   time: 10
   factor: 1

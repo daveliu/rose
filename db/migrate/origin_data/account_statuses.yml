@@ -1,7 +1,10 @@
 status1:
+  id: 1
   value: 正常
 status2:
+  id: 2
   value: 删除
 status3:
+  id: 3
   value: 冻结
 

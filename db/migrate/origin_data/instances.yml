@@ -1,4 +1,6 @@
 instantce1:
+  id: 1
   value: 副本1
 instantce2:
+  id: 2
   value: 副本2
