@@ -1,0 +1,6 @@
+page.assign "level_time_factor", @upgrade_level.upgrade_level_prices.map {|p| [p.id, p.factor] }
+page.assign "level_price", @upgrade_level.price
+
+options = "<option value='0'></option>"
+@upgrade_level.upgrade_level_prices.each {|p| options << "<option value='#{p.id}'>#{p.description}</option>" }
+page.replace_html("upgrade_level_price_id", options)

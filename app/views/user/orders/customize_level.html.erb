@@ -1,0 +1,23 @@
+<%= javascript_include_tag "user/order_data", "public/form_validate", "user/forms" %>
+<div style="background-color:#ffffff;padding: 100px;">
+  <% form_for :order, :url => {:action => "customize_pve"}, :html => {:onsubmit => "onSubmitLevel(this);return false;"} do |form| %>
+    <h2>选择代练等级</h2>
+    请选择等级<%= select :upgrade_level, :id, [["请选择", ""]] + @upgrade_levels.map {|l| [l.value, l.id] }, {}, {:onchange => "findLevelTimes(this)", :name => "level[upgrade_level_id]"} %>
+    <span id="upgrade_level_id_error" class="error" style="display:none;">请选择代练等级</span><br /><br />
+    请选择时间<%= select :upgrade_level_price, :id, @upgrade_level && @upgrade_level_price ?  [["请选择", ""]] + @upgrade_level.upgrade_level_prices.map {|p| [p.description, p.id] } : [],
+      {}, {:onchange => "updateLevelPrice(this)", :name => "level[upgrade_level_price_id]"} %>
+    <span id="upgrade_level_price_id_error" class="error" style="display:none;">请选择代练时间</span><br /><br />
+    价格：<span id="level_price"><%= @total_price || "0.0" %></span>元<br /><br />
+    <input type="button" value="跳过等级选择" onclick="location.href='/user/orders/customize_pve'" />
+    <%= form.submit "继续选择PVE装备" %>
+  <% end %>
+  <script type="text/javascript">
+    <% if @upgrade_level && @upgrade_level_price %>
+      level_time_factor = []
+      <% @upgrade_level.upgrade_level_prices.each do |price| %>
+        level_time_factor.push([<%= price.id %>, <%= price.factor %>])
+      <% end %>
+      level_price = <%= @upgrade_level.price %>;
+    <% end %>
+  </script>
+</div>

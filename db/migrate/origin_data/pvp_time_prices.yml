@@ -1,0 +1,50 @@
+time1:
+    id: 1
+    pvp_price: 200
+    factor: 1
+    min_day: 10
+    max_day: 15
+time2:
+    id: 2
+    pvp_price: 200
+    factor: 1.2
+    min_day: 6
+    max_day: 10
+time3:
+    id: 3
+    pvp_price: 200
+    factor: 1.5
+    min_day: 3
+    max_day: 6
+
+time4:
+    id: 4
+    pvp_price: 500
+    factor: 1.1
+    min_day: 8
+    max_day: 12
+time5:
+    id: 5
+    pvp_price: 500
+    factor: 1.3
+    min_day: 5
+    max_day: 8
+time6:
+    id: 6
+    pvp_price: 500
+    factor: 1.6
+    min_day: 3
+    max_day: 5
+
+time7:
+    id: 7
+    pvp_price: 1000
+    factor: 1.2
+    min_day: 7
+    max_day: 12
+time8:
+    id: 8
+    pvp_price: 1000
+    factor: 1.8
+    min_day: 4
+    max_day: 7
