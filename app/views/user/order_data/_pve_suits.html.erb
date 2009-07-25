@@ -1,0 +1,5 @@
+<% pve_suits.each do |suit| %>
+<input id="pve_suit_select_<%= suit.id %>" type="checkbox" value="<%= suit.id %>" onclick="selectPveSuit(this, <%= suit.id %>)" />&nbsp;&nbsp;&nbsp;&nbsp;
+<%= suit.name %>&nbsp;&nbsp;
+<%= suit.price %><br><br>
+<% end %>

@@ -95,7 +95,8 @@ class Users < ActiveRecord::Migration
     create_table :pve_time_prices, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :pve_price, :float
       table.column :factor, :float
-      table.column :description, :string, :limit => 30
+      table.column :min_day, :integer
+      table.column :max_day, :integer
     end
 
     #pvp分类
@@ -115,7 +116,8 @@ class Users < ActiveRecord::Migration
     create_table :pvp_time_prices, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :pvp_price, :float
       table.column :factor, :float
-      table.column :description, :string, :limit => 30
+      table.column :min_day, :integer
+      table.column :max_day, :integer
     end
 
     create_table :orders, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
@@ -154,6 +156,16 @@ class Users < ActiveRecord::Migration
     create_table :orders_pve_suits, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :order_id, :integer, :null => false
       table.column :pve_suit_id, :integer, :null => false
+    end
+
+    create_table :orders_pve_equipment, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :order_id, :integer, :null => false
+      table.column :equipment_id, :integer, :null => false
+    end
+
+    create_table :orders_pvp_equipment, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :order_id, :integer, :null => false
+      table.column :equipment_id, :integer, :null => false
     end
 
     create_table :order_upgrade_levels, :force => true, :id => false, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
@@ -238,21 +250,8 @@ class Users < ActiveRecord::Migration
     end
 
     directory = File.dirname(__FILE__) + "/origin_data/"
-    Fixtures.create_fixtures(directory, "users", ".*")
-    Fixtures.create_fixtures(directory, "upgrade_levels", ".*")
-    Fixtures.create_fixtures(directory, "upgrade_level_prices", ".*")
-    Fixtures.create_fixtures(directory, "equipment_levels", ".*")
-    Fixtures.create_fixtures(directory, "equipment_types", ".*")
-    Fixtures.create_fixtures(directory, "equipment_categories", ".*")
-    Fixtures.create_fixtures(directory, "instances", ".*")
-    Fixtures.create_fixtures(directory, "pve_categories", ".*")
-    Fixtures.create_fixtures(directory, "pvp_categories", ".*")
-    Fixtures.create_fixtures(directory, "games", ".*")
-    Fixtures.create_fixtures(directory, "game_areas", ".*")
-    Fixtures.create_fixtures(directory, "game_servers", ".*")
-    Fixtures.create_fixtures(directory, "order_statuses", ".*")
-    Fixtures.create_fixtures(directory, "account_statuses", ".*")
-    Fixtures.create_fixtures(directory, "pay_types", ".*")
+    data = Dir.entries(directory).map {|file| file.end_with?(".yml") ? file[0...-4] : nil }.compact
+    Fixtures.create_fixtures(directory, data)
   end
   
   def self.down
@@ -287,9 +286,11 @@ class Users < ActiveRecord::Migration
     drop_table :site_messages
     drop_table :account_statuses
     drop_table :pay_types
-    drop_table :order_pvp_time_price
-    drop_table :order_pve_time_price
-    drop_table :pvp_time_price
-    drop_table :pve_time_price
+    drop_table :order_pvp_time_prices
+    drop_table :order_pve_time_prices
+    drop_table :pvp_time_prices
+    drop_table :pve_time_prices
+    drop_table :orders_pve_equipment
+    drop_table :orders_pvp_equipment
   end
 end

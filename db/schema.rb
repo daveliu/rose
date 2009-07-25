@@ -111,9 +111,19 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.datetime "updated_at"
   end
 
+  create_table "orders_pve_equipment", :id => false, :force => true do |t|
+    t.integer "order_id",     :null => false
+    t.integer "equipment_id", :null => false
+  end
+
   create_table "orders_pve_suits", :id => false, :force => true do |t|
     t.integer "order_id",    :null => false
     t.integer "pve_suit_id", :null => false
+  end
+
+  create_table "orders_pvp_equipment", :id => false, :force => true do |t|
+    t.integer "order_id",     :null => false
+    t.integer "equipment_id", :null => false
   end
 
   create_table "orders_pvp_suits", :id => false, :force => true do |t|
@@ -161,9 +171,10 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "pve_time_prices", :force => true do |t|
-    t.float  "pve_price"
-    t.float  "factor"
-    t.string "description", :limit => 30
+    t.float   "pve_price"
+    t.float   "factor"
+    t.integer "min_day"
+    t.integer "max_day"
   end
 
   create_table "pvp_categories", :force => true do |t|
@@ -180,9 +191,10 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "pvp_time_prices", :force => true do |t|
-    t.float  "pvp_price"
-    t.float  "factor"
-    t.string "description", :limit => 30
+    t.float   "pvp_price"
+    t.float   "factor"
+    t.integer "min_day"
+    t.integer "max_day"
   end
 
   create_table "site_messages", :force => true do |t|

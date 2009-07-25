@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   
   def current_user
-    @current_user ||= session[:user_id] ? User.find(session:user_id): nil
+    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
   end
 
   def after_logon(user)
