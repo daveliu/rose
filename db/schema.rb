@@ -24,9 +24,21 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "dealers", :force => true do |t|
-    t.string   "username",          :limit => 30, :null => false
-    t.string   "password",          :limit => 50, :null => false
-    t.integer  "account_status_id"
+    t.string   "username",   :limit => 30, :null => false
+    t.string   "password",   :limit => 50, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipment", :force => true do |t|
+    t.string   "name",                  :limit => 50,  :null => false
+    t.string   "image_path",            :limit => 200
+    t.integer  "equipment_level_id"
+    t.integer  "equipment_category_id"
+    t.integer  "instance_id"
+    t.integer  "suit_id"
+    t.boolean  "singlesellable"
+    t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,20 +53,6 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
 
   create_table "equipment_types", :force => true do |t|
     t.string "value", :limit => 30
-  end
-
-  create_table "equipments", :force => true do |t|
-    t.string   "name",                  :limit => 50,  :null => false
-    t.string   "image_path",            :limit => 200
-    t.integer  "equipment_level_id"
-    t.integer  "equipment_category_id"
-    t.integer  "instance_id"
-    t.integer  "suit_id"
-    t.string   "suit_type",             :limit => 20
-    t.boolean  "singlesellable"
-    t.float    "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "game_areas", :force => true do |t|
@@ -75,18 +73,28 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.string "value", :limit => 50
   end
 
+  create_table "order_pve_time_prices", :force => true do |t|
+    t.integer "pve_time_price_id", :null => false
+  end
+
+  create_table "order_pvp_time_prices", :force => true do |t|
+    t.integer "pvp_time_price_id", :null => false
+  end
+
   create_table "order_statuses", :force => true do |t|
     t.string "value", :null => false
   end
 
-  create_table "order_upgrade_levels", :force => true do |t|
-    t.integer "order_id"
-    t.integer "level_id"
+  create_table "order_upgrade_levels", :id => false, :force => true do |t|
+    t.integer "order_id",               :null => false
+    t.integer "upgrade_level_id",       :null => false
+    t.integer "upgrade_level_price_id", :null => false
   end
 
   create_table "orders", :force => true do |t|
     t.string   "order_code",      :limit => 20, :null => false
     t.integer  "order_status_id",               :null => false
+    t.integer  "pay_type_id",                   :null => false
     t.integer  "game_id",                       :null => false
     t.integer  "game_area_id",                  :null => false
     t.integer  "game_server_id",                :null => false
@@ -104,13 +112,13 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "orders_pve_suits", :id => false, :force => true do |t|
-    t.integer "order_id"
-    t.integer "suit_id"
+    t.integer "order_id",    :null => false
+    t.integer "pve_suit_id", :null => false
   end
 
   create_table "orders_pvp_suits", :id => false, :force => true do |t|
-    t.integer "order_id"
-    t.integer "suit_id"
+    t.integer "order_id",    :null => false
+    t.integer "pvp_suit_id", :null => false
   end
 
   create_table "package_upgrade_levels", :force => true do |t|
@@ -125,13 +133,18 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "packages_pve_suits", :id => false, :force => true do |t|
-    t.integer "order_id"
-    t.integer "suit_id"
+    t.integer "order_id", :null => false
+    t.integer "suit_id",  :null => false
   end
 
   create_table "packages_pvp_suits", :id => false, :force => true do |t|
-    t.integer "order_id"
-    t.integer "suit_id"
+    t.integer "order_id", :null => false
+    t.integer "suit_id",  :null => false
+  end
+
+  create_table "pay_types", :force => true do |t|
+    t.string "value",       :limit => 30
+    t.string "description", :limit => 200
   end
 
   create_table "pve_categories", :force => true do |t|
@@ -147,6 +160,12 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.datetime "updated_at"
   end
 
+  create_table "pve_time_prices", :force => true do |t|
+    t.float  "pve_price"
+    t.float  "factor"
+    t.string "description", :limit => 30
+  end
+
   create_table "pvp_categories", :force => true do |t|
     t.string "value", :limit => 30
   end
@@ -158,6 +177,12 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pvp_time_prices", :force => true do |t|
+    t.float  "pvp_price"
+    t.float  "factor"
+    t.string "description", :limit => 30
   end
 
   create_table "site_messages", :force => true do |t|
@@ -186,18 +211,11 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.string "value", :limit => 20
   end
 
-  create_table "upgrade_level_price", :force => true do |t|
-    t.integer "upgrade_level_id",               :null => false
-    t.integer "time",                           :null => false
-    t.float   "factor",                         :null => false
-    t.string  "description",      :limit => 20
-  end
-
   create_table "upgrade_level_prices", :force => true do |t|
-    t.integer "upgrade_level_id",               :null => false
-    t.integer "time",                           :null => false
-    t.float   "factor",                         :null => false
-    t.string  "description",      :limit => 20
+    t.integer "upgrade_level_id", :null => false
+    t.integer "min_day",          :null => false
+    t.integer "max_day",          :null => false
+    t.float   "factor",           :null => false
   end
 
   create_table "upgrade_levels", :force => true do |t|

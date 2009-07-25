@@ -1,0 +1,30 @@
+suit1:
+    id: 1
+    name: suit1
+    price: 500
+    pvp_category_id: 1
+suit2:
+    id: 2
+    name: suit2
+    price: 800
+    pvp_category_id: 2
+suit3:
+    id: 3
+    name: suit3
+    price: 1000
+    pvp_category_id: 2
+suit4:
+    id: 4
+    name: suit4
+    price: 400
+    pvp_category_id: 2
+suit5:
+    id: 5
+    name: suit5
+    price: 700
+    pvp_category_id: 3
+suit6:
+    id: 6
+    name: suit6
+    price: 300
+    pvp_category_id: 4

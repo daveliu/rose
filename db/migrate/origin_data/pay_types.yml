@@ -1,0 +1,12 @@
+type1:
+    id: 1
+    value: 支付宝
+    description: 支付宝
+type2:
+    id: 2
+    value: 财付通
+    description: 财付通
+type3:
+    id: 3
+    value: 银行汇款
+    description: 银行汇款

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
   validates_presence_of :username, :email
 
-  has_many :site_messages, :as => :owner
+  has_many :site_messages, :as => :receiver
   belongs_to :account_status
 
   def self.authenticate(username, password)

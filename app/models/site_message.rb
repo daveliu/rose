@@ -1,3 +1,3 @@
 class SiteMessage < ActiveRecord::Base
-  belongs_to :owner, :polymorphic => true
+  belongs_to :receiver, :polymorphic => true
 end

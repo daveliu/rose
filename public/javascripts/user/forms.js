@@ -47,3 +47,14 @@ function onLoginSubmit(form) {
         form.submit();
     }
 }
+
+function onSubmitLevel(form) {
+    var selects = ["upgrade_level_id", "upgrade_level_price_id"];
+    for (var i = 0; i < selects.length; i++) {
+        if ($(selects[i]).selectedIndex == 0) {
+            showError(selects[i]);
+            return;
+        }
+    }
+    form.submit();
+}

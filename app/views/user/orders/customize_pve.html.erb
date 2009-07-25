@@ -1,0 +1,16 @@
+<%= javascript_include_tag "user/order_data", "public/form_validate", "user/forms" %>
+<div style="background-color:#ffffff;padding: 100px;">
+  <h1 style="color: #000000;">PVE装备</h1>
+  <% form_for :order, :url => {:action => "customize_pvp"}, :html => {:onsubmit => "onSubmitPve(this);return false;"} do |form| %>
+    <h2>套装</h2>
+    请选择类别<%= select :pve_category, :id, [["请选择", ""]] + @pve_categories.map {|l| [l.value, l.id] }, {}, {:onchange => "findPveSuits(this)", :name => "pve_category_id"} %>
+    <span id="pve_category_id_error" class="error" style="display:none;">请选择代练等级</span><br /><br />
+    请选择套装:
+    <div id="pve_suits_div" style="width: 800px;border: 1px solid #000000;"></div>
+    <span id="pve_suit_id_error" class="error" style="display:none;">请选择代练时间</span><br /><br />
+    价格：<span id="level_price">0.0</span>元<br /><br />
+    <input type="button" value="返回选择级别" onclick="location.href='/user/orders/customize_level'" />
+    <input type="button" value="跳过PVE选择" onclick="location.href='/user/orders/customize_pvp'" />
+    <%= form.submit "继续选择PVP装备" %>
+  <% end %>
+</div>

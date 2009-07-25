@@ -1,8 +1,12 @@
 category1:
+  id: 1
   value: S1
 category2:
+  id: 2
   value: S2
 category3:
+  id: 3
   value: S3
 category4:
+  id: 4
   value: S4
