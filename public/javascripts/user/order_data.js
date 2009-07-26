@@ -35,38 +35,48 @@ function findPveSuits(element) {
     }
 }
 
-function selectPveSuit(element, suit_id) {
+function selectPveSuit(checked, suit_id) {
     var suits = $F("pve_pve_suits").split(";").without("");
-    if (element.checked) {
+    var suit = findById(pve_suits, suit_id);
+    var price = suit ? suit.price : $("pve_selected_suit_price_" + suit_id).innerHTML;
+    if (checked) {
         suits.push(suit_id);
+        new Insertion.Bottom("pve_selected_suits_div", "<div id='selected_suit_" + suit.id + "'>" + selected_pve_category + " " + suit.name +
+            " <span id='pve_selected_suit_price_" + suit.id + "'>" + suit.price + "</span>" +
+            " <a href='javascript:removeSuit(" + suit.id + ", " + suit.price + ")'>取消</a>");
     }
     else {
+        Element.remove("selected_suit_" + suit_id);
         suits = suits.without(suit_id.toString);
     }    
     $("pve_pve_suits").value = suits.join(";");
     $("pve_price").update("0");
-    calculateTotalPrice(suit_id, pve_prices, element.checked);
+    calculateTotalPrice(suit_id, price, checked);
     getPveTimePrice();
 }
 
-function calculateTotalPrice(id, data, isAdd) {
+function removeSuit(id) {
+    var element = $("pve_suit_select_" + id);
+    if (element) {
+        element.checked = false;
+    }
+    selectPveSuit(false, id);
+}
+
+function calculateTotalPrice(id, price, isAdd) {
     id = parseInt(id);
-    for (var i = 0; i < data.length; i++) {
-        if (id == data[i][0]) {
-            if (isAdd) {
-                totalPvePrice += parseFloat(data[i][1]);
-            }
-            else {
-                totalPvePrice -= parseFloat(data[i][1])
-            }
-            break;
-        }
+    if (isAdd) {
+        totalPvePrice += parseFloat(price);
+    }
+    else {
+        totalPvePrice -= parseFloat(price)
     }
     $("pve_eq_price").update(totalPvePrice);
 }
 
 function getPveTimePrice() {
-    new Ajax.Request('/user/order_data/pve_time_price?total_price=' + totalPvePrice, {
+    var url = "/user/order_data/pve_time_price?total_price=" + totalPvePrice;
+    new Ajax.Request(url, {
         method: 'get',
         evalScript:true
     });
@@ -84,8 +94,16 @@ function selectPveTime(element) {
     $("pve_price").update(accMul(factor, totalPvePrice));
 }
 
+function findById(data, id) {
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].id == parseInt(id)) {
+            return data[i];
+        }
+    }
+}
+
 function accMul(arg1,arg2) {
-    var m = 0,s1 = arg1.toString(), s2 = arg2.toString();
+    var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
     try {
         m += s1.split(".")[1].length
     }
@@ -94,5 +112,5 @@ function accMul(arg1,arg2) {
         m += s2.split(".")[1].length
     }
     catch(e){}
-    return Number(s1.replace(".",""))*Number(s2.replace(".","")) / Math.pow(10,m)
+    return Number(s1.replace(".","")) * Number(s2.replace(".","")) / Math.pow(10,m)
 }
