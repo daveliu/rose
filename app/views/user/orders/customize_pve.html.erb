@@ -1,25 +1,31 @@
 <%= javascript_include_tag "user/order_data", "public/form_validate", "user/forms" %>
 <div style="background-color:#ffffff;padding: 100px;">
   <h1 style="color: #000000;">PVE装备</h1>
+  <h2>套装</h2>
+  请选择类别<%= select :pve_category, :id, [["请选择", ""]] + @pve_categories.map {|l| [l.value, l.id] }, {},
+    {:onchange => "findPveSuits(this)", :name => "pve[pve_category_id]"} %><br /><br />
+  请选择套装:
+  <div id="pve_suits_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
+  已选择装备：
+  <div id="pve_selected_suits_div" style="width: 800px;border: 1px solid #000000;">
+    <%= render :partial => "/user/order_data/selected_pve_suits", :locals => {:pve_suits => @pve_suits} if @pve_suits %>
+  </div><br /><br />
   <% form_for :order, :url => {:action => "customize_pvp"}, :html => {:onsubmit => "onSubmitPve(this);return false;"} do |form| %>
-    <h2>套装</h2>
-    请选择类别<%= select :pve_category, :id, [["请选择", ""]] + @pve_categories.map {|l| [l.value, l.id] }, {},
-      {:onchange => "findPveSuits(this)", :name => "pve[pve_category_id]"} %><br /><br />
-    请选择套装:
-    <div id="pve_suits_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
-    已选择装备：
-    <div id="pve_selected_suits_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
-    
-    请选择时间：<%= select :pve_time_price, :id, {}, {}, {:onchange => "selectPveTime(this)", :name => "pve[pve_time_price_id]"} %><br><br>
-
-    装备总价格：<span id="pve_eq_price">0.0</span>元<br /><br />
+    请选择时间：<%= select :pve_time_price, :id, [["", "0"]] + (@pve_time_prices ? @pve_time_prices.map {|p| [p.description, p.id] } : []), {},
+      {:onchange => "selectPveTime(this)", :name => "pve[pve_time_price_id]"} %><br><br>
+    装备总价格：<span id="pve_eq_price"><%= @total_pve_price || "0.0" %></span>元<br /><br />
     价格：<span id="pve_price">0.0</span>元<br /><br />
-    <%= hidden_field(:pve, :pve_suits) %>
     <input type="button" value="返回选择级别" onclick="location.href='/user/orders/customize_level'" />
     <input type="button" value="跳过PVE选择" onclick="location.href='/user/orders/customize_pvp'" />
     <%= form.submit "继续选择PVP装备" %>
   <% end %>
   <script type="text/javascript">
-    totalPvePrice = 0;
+      pveTimePrice = [];
+      totalPvePrice = <%= @total_pve_price || "0" %>;
+      <% if @pve_time_prices %>
+        <% @pve_time_prices.each do |p| %>
+          pveTimePrice.push([<%= p.id %>, <%= p.factor %>])
+        <% end %>
+      <% end %>
   </script>
 </div>

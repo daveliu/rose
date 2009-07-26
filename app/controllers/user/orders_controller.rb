@@ -16,6 +16,13 @@ class User::OrdersController < ApplicationController
     end
     @pve_categories = PveCategory.find(:all)
     @instances = Instance.find(:all)
+    if session[:pve]
+      if session[:pve][:suits]
+        @pve_suits = PveSuit.find(session[:pve][:suits], :include => [:pve_category])
+        @total_pve_price = @pve_suits.map(&:price).sum
+        @pve_time_prices = PveTimePrice.find_by_price(@total_pve_price)
+      end
+    end
   end
 
   def customize_pvp

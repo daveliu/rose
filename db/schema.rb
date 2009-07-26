@@ -75,10 +75,12 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
 
   create_table "order_pve_time_prices", :force => true do |t|
     t.integer "pve_time_price_id", :null => false
+    t.integer "pve_status_id",     :null => false
   end
 
   create_table "order_pvp_time_prices", :force => true do |t|
     t.integer "pvp_time_price_id", :null => false
+    t.integer "pvp_status_id",     :null => false
   end
 
   create_table "order_statuses", :force => true do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.integer "order_id",               :null => false
     t.integer "upgrade_level_id",       :null => false
     t.integer "upgrade_level_price_id", :null => false
+    t.integer "level_status_id",        :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -217,6 +220,10 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sub_order_statuses", :force => true do |t|
+    t.string "value", :null => false
   end
 
   create_table "time_types", :force => true do |t|

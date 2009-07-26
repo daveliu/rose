@@ -1,0 +1,3 @@
+<% pve_suits.each do |suit| %>
+  <%= suit.pve_category.value %> <%= suit.name %> <%= suit.price %> <%= link_to "取消", "javascript:removeSuit(#{suit.id})" %><br>
+<% end %>
