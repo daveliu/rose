@@ -7,8 +7,8 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Tenpay 
        
-        KEY = "I10n342dKterb9128D76438yHjtar209"
-        ACCOUNT = "1202378101"
+        KEY = "xxx"
+        ACCOUNT = "xxx"
 
         mattr_accessor :service_url
         self.service_url = 'https://www.tenpay.com/cgi-bin/v1.0/pay_gate.cgi'

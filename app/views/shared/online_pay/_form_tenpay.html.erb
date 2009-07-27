@@ -3,8 +3,8 @@
   if(isIE && document.charset!="utf-8")location.reload(false);
 </script>
 <% payment_service_for code, ActiveMerchant::Billing::Integrations::Tenpay::ACCOUNT,
-  :amount => (amount * 100).to_i, :currency => '1', :service => :tenpay, :html => { :id => 'pay_form_11', "accept-charset" => "gbk" } do |service| -%>
-  <% service.description '印客网个性化印品' %>
+  :amount => (amount * 100).to_i, :currency => '1', :service => :tenpay, :html => { :id => 'pay_form_2', "accept-charset" => "gbk" } do |service| -%>
+  <% service.description 'rose' %>
   <% service.date Time.now.strftime("%Y%m%d") %>
   <% service.cmdno 1 %>
   <% service.attach 1 %>

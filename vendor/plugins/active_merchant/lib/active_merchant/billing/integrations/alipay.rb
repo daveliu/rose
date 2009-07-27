@@ -7,8 +7,8 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Alipay
 
-        ACCOUNT = "2088001387185407"
-        KEY = "7wtp8igr6jtzv2w0th9rrile6rha3med"
+        ACCOUNT = "xxx"
+        KEY = "xxx"
        
         mattr_accessor :service_url
         self.service_url = 'https://www.alipay.com/cooperate/gateway.do'

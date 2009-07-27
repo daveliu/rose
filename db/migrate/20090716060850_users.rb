@@ -127,6 +127,7 @@ class Users < ActiveRecord::Migration
     end
 
     create_table :orders, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :user_id, :integer, :null => false
       table.column :order_code, :string, :null => false, :limit => 20
       table.column :order_status_id, :integer, :null => false
       table.column :pay_type_id, :integer, :null => false
@@ -142,16 +143,19 @@ class Users < ActiveRecord::Migration
       table.column :qq, :string, :limit => 15
       table.column :cell_phone, :string, :limit => 15
       table.column :phone, :string, :limit => 15
+      table.column :total_price, :float
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
     end
 
     create_table :order_pve_time_prices, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :order_id, :integer, :null => false
       table.column :pve_time_price_id, :integer, :null => false
       table.column :pve_status_id, :integer, :null => false
     end
 
     create_table :order_pvp_time_prices, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :order_id, :integer, :null => false
       table.column :pvp_time_price_id, :integer, :null => false
       table.column :pvp_status_id, :integer, :null => false
     end

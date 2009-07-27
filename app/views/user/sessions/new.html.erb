@@ -1,6 +1,8 @@
 <%= javascript_include_tag "public/form_validate", "user/forms" %>
 <div class="login">
   <h1>用户登录</h1>
+  <br>
+  <span class="error" style="font-size:14px;"><%= flash[:notice] %></span>
   <div style="padding:20px 0;">
     <% form_for :user, :url => {:action => :create}, :html => {:onsubmit => "onLoginSubmit(this);return false;"} do |form| %>
       <p>登录邮箱：<br />

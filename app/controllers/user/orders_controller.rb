@@ -1,5 +1,6 @@
 class User::OrdersController < ApplicationController
   layout "home"
+  before_filter :authentication
   
   def customize_level
     if params[:clear] == "pve"
@@ -58,11 +59,43 @@ class User::OrdersController < ApplicationController
     if params[:pvp]
       session[:order][:pvp].update(params[:pvp])
     end
+    find_order_data
+    @pay_types = PayType.find(:all)
+    @games = Game.find(:all)
+    @time_types = TimeType.find(:all)
+  end
+
+  def create
+    find_order_data
+    order = Order.new(params[:order].update(:order_status_id => 1, :total_price => @prices.sum))
+
+    order.order_upgrade_level = OrderUpgradeLevel.new(:upgrade_level_id => @upgrade_level.id,
+      :upgrade_level_price_id => @upgrade_level_price.id, :level_status_id => 1) if @upgrade_level && @upgrade_level_price
+
+    order.pve_suits = @pve_suits || []
+    order.pve_equipment = (@pve_equipment || []) + (@pve_weapons || [])
+    order.order_pve_time_price = OrderPveTimePrice.new(:pve_time_price_id => @pve_time_price.id, :pve_status_id => 1) if @pve_time_price
+
+    order.pvp_suits = @pvp_suits || []
+    order.pvp_equipment = @pvp_weapons || []
+    order.order_pvp_time_price = OrderPvpTimePrice.new(:pvp_time_price_id => @pvp_time_price.id, :pvp_status_id => 1) if @pvp_time_price
+
+    order.save!
+    session[:order] = nil
+    redirect_to :action => :pay, :id => order.order_code
+  end
+
+  def pay
+    @order = Order.find_by_order_code(params[:id])
+  end
+
+  private
+  def find_order_data
     @prices = []
     if session[:order][:level]
-      @upgrade_level = UpgradeLevel.find(session[:order][:level][:upgrade_level_id])
-      @upgrade_level_price = UpgradeLevelPrice.find(session[:order][:level][:upgrade_level_price_id])
-      @prices << @upgrade_level.price * @upgrade_level_price.factor
+      @upgrade_level = UpgradeLevel.find(session[:order][:level][:upgrade_level_id]) if session[:order][:level][:upgrade_level_id]
+      @upgrade_level_price = UpgradeLevelPrice.find(session[:order][:level][:upgrade_level_price_id]) if session[:order][:level][:upgrade_level_price_id]
+      @prices << @upgrade_level.price * @upgrade_level_price.factor if @upgrade_level && @upgrade_level_price
     end
     if session[:order][:pve]
       @pve_suits = PveSuit.find(session[:order][:pve][:suits]) unless session[:order][:pve][:suits].blank?
@@ -77,12 +110,5 @@ class User::OrdersController < ApplicationController
       @pvp_time_price = PvpTimePrice.find(session[:order][:pvp]["pvp_time_price_id"])
       @prices << ((@pvp_suits || []).map(&:price).sum + (@pvp_weapons || []).map(&:price).sum) * @pvp_time_price.factor
     end
-    @pay_types = PayType.find(:all)
-    @games = Game.find(:all)
-    @time_types = TimeType.find(:all)
-  end
-
-  def create
-    raise
   end
 end

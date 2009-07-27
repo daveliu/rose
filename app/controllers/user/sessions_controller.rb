@@ -8,9 +8,10 @@ class User::SessionsController < ApplicationController
     user = User.authenticate(params[:user][:username], params[:user][:password])
     if user
       after_logon(user)
-      render :text => "success"
+      redirect_to :controller => "/user/orders", :action => "customize_level"
     else
-      render :text => "fail"
+      flash[:notice] = "用户名或密码错误"
+      redirect_to :action => "new"
     end
   end
 end

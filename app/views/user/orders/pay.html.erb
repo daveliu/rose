@@ -1,0 +1,11 @@
+<%= javascript_include_tag "user/order" %>
+<div style="background-color:#ffffff;padding: 100px;">
+  订单号：<%= @order.order_code %><br>
+  支付金额：<%= number_to_currency(@order.total_price) %><br>
+  <% if @order.online_pay? %>
+    <input type="button" value="马上支付" onclick="submitPayForm(<%= @order.pay_type_id %>)" />
+    <%= online_pay_form(:pay_type_id => @order.pay_type_id, :code => @order.order_code, :amount => @order.total_price) %>
+  <% else %>
+    <a href="/">完成</a>
+  <% end %>
+</div>

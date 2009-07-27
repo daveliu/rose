@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
   end
 
+  def authentication
+    redirect_to new_user_session_path unless current_user
+  end
+
   def after_logon(user)
     session[:user_id] = user.id
   end
