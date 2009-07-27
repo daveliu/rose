@@ -12,12 +12,13 @@
     <%= form.submit "继续选择PVE装备" %>
   <% end %>
   <script type="text/javascript">
-    level_time_factor = []
+    level_time_factor = [];
+    upgrade_level_price = 0;
     <% if @upgrade_level && @upgrade_level_price %>
       <% @upgrade_level.upgrade_level_prices.each do |price| %>
         level_time_factor.push([<%= price.id %>, <%= price.factor %>])
       <% end %>
-      level_price = <%= @upgrade_level.price %>;
+      upgrade_level_price = <%= @upgrade_level.price %>;
     <% end %>
   </script>
 </div>

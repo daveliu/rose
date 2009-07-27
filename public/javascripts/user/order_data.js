@@ -20,7 +20,7 @@ function updateLevelPrice(element) {
             break;
         }
     }
-    $("level_price").update(factor * level_price);
+    $("level_price").update(factor * upgrade_level_price);
 }
 
 function findPveSuits(element) {
