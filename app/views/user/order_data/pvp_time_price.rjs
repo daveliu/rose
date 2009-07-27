@@ -1,0 +1,12 @@
+page.assign "pvpTimePrice", @pvp_time_prices.map {|p| [p.id, p.factor] }
+page.assign "totalPvpPrice", @total_pvp_price
+
+options = "<option value='0'></option>"
+@pvp_time_prices.each {|p| options << "<option value='#{p.id}'>#{p.description}</option>" }
+page.replace_html("pvp_time_price_id", options)
+
+page.replace_html("pvp_selected_suits_div", "")
+page.insert_html(:bottom, "pvp_selected_suits_div", :partial => "selected_pvp_suits", :locals => {:pvp_suits => @pvp_suits})
+page.insert_html(:bottom, "pvp_selected_suits_div", :partial => "selected_pvp_equipment", :locals => {:equipment => @pvp_weapons})
+
+page.replace_html("pvp_eq_price", @total_pvp_price)

@@ -3,29 +3,46 @@
   <h1 style="color: #000000;">PVE装备</h1>
   <h2>套装</h2>
   请选择类别<%= select :pve_category, :id, [["请选择", ""]] + @pve_categories.map {|l| [l.value, l.id] }, {},
-    {:onchange => "findPveSuits(this)", :name => "pve[pve_category_id]"} %><br /><br />
+    {:onchange => "findPveSuits(this)", :name => nil} %><br /><br />
   请选择套装:
   <div id="pve_suits_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
-  已选择装备：
+
+  <h2>散件</h2>
+  请选择副本<%= select :instance, :id, [["请选择", ""]] + @instances.map {|i| [i.value, i.id] }, {}, {:onchange => "findPveEquipment(this, 1)", :name => nil} %><br><br>
+  请输入装备名称：<%= text_field :pve, :eq_name, :name => "eq_name" %>
+  <input type="button" value="搜索" onclick="onSearchEq()" />
+  <div id="pve_equipment_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
+
+  <h2>武器</h2>
+  请选择副本<%= select :instance_weapon, :id, [["请选择", ""]] + @instances.map {|i| [i.value, i.id] }, {}, {:onchange => "findPveEquipment(this, 2)", :name => nil} %><br><br>
+  请输入装备名称：<%= text_field :pve, :weapon_name, :name => "weapon_name" %>
+  <input type="button" value="搜索" onclick="onSearchWeapon()" />
+  <div id="pve_weapon_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
+
+  <h2>已选择装备：</h2>
   <div id="pve_selected_suits_div" style="width: 800px;border: 1px solid #000000;">
     <%= render :partial => "/user/order_data/selected_pve_suits", :locals => {:pve_suits => @pve_suits} if @pve_suits %>
+    <%= render :partial => "/user/order_data/selected_pve_equipment", :locals => {:equipment => @pve_equipment} if @pve_equipment %>
+    <%= render :partial => "/user/order_data/selected_pve_equipment", :locals => {:equipment => @pve_weapons} if @pve_weapons %>
   </div><br /><br />
   <% form_for :order, :url => {:action => "customize_pvp"}, :html => {:onsubmit => "onSubmitPve(this);return false;"} do |form| %>
     请选择时间：<%= select :pve_time_price, :id, [["", "0"]] + (@pve_time_prices ? @pve_time_prices.map {|p| [p.description, p.id] } : []), {},
       {:onchange => "selectPveTime(this)", :name => "pve[pve_time_price_id]"} %><br><br>
+
+    装备最低总金额: <span id="pve_min_price"><%= @min_pve_price %></span>元<br /><br />
     装备总价格：<span id="pve_eq_price"><%= @total_pve_price || "0.0" %></span>元<br /><br />
     价格：<span id="pve_price">0.0</span>元<br /><br />
-    <input type="button" value="返回选择级别" onclick="location.href='/user/orders/customize_level'" />
+    <input type="button" value="返回选择级别" onclick="location.href='/user/orders/customize_level?clear=pve'" />
     <input type="button" value="跳过PVE选择" onclick="location.href='/user/orders/customize_pvp'" />
     <%= form.submit "继续选择PVP装备" %>
   <% end %>
   <script type="text/javascript">
-      pveTimePrice = [];
-      totalPvePrice = <%= @total_pve_price || "0" %>;
-      <% if @pve_time_prices %>
-        <% @pve_time_prices.each do |p| %>
-          pveTimePrice.push([<%= p.id %>, <%= p.factor %>])
-        <% end %>
-      <% end %>
+    pveTimePrice = [];
+    totalPvePrice = <%= @total_pve_price || "0" %>;
+  <% if @pve_time_prices %>
+    <% @pve_time_prices.each do |p| %>
+      pveTimePrice.push([<%= p.id %>, <%= p.factor %>])
+    <% end %>
+  <% end %>
   </script>
 </div>

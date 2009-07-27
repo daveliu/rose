@@ -1,0 +1,7 @@
+<% pve_equipment.each do |eq| %>
+  <input id="pve_equipment_select_<%= eq.id %>" type="checkbox" value="<%= eq.id %>" onclick="selectPveEquipment(this.checked, <%= eq.id %>, <%=  params[:type].to_i %>)"
+         <%= "checked" if session[:order] && session[:order][:pve] && session[:order][:pve][:equipment] && session[:order][:pve][:equipment].include?(eq.id) %> />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= eq.name %>&nbsp;&nbsp;
+  <%= eq.price %><br><br>
+<% end %>

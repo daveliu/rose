@@ -1,0 +1,4 @@
+options = "<option value=''>请选择</option>"
+@game_areas.each {|area| options << "<option value='#{area.id}'>#{area.value}</option>" }
+
+page.replace_html("order_game_area_id", options)

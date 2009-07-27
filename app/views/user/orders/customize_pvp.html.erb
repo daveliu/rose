@@ -1,0 +1,40 @@
+<%= javascript_include_tag "user/order_data", "public/form_validate", "user/forms" %>
+<div style="background-color:#ffffff;padding: 100px;">
+  <h1 style="color: #000000;">PVP装备</h1>
+  <h2>套装</h2>
+  请选择类别<%= select :pvp_category, :id, [["请选择", ""]] + @pvp_categories.map {|l| [l.value, l.id] }, {},
+    {:onchange => "findPvpSuits(this)", :name => nil} %><br /><br />
+  请选择套装:
+  <div id="pvp_suits_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
+
+  <h2>武器</h2>
+  请选择副本<%= select :instance_, :id, [["请选择", ""]] + @instances.map {|i| [i.value, i.id] }, {}, {:onchange => "findPvpEquipment(this, 2)", :name => nil} %><br><br>
+  请输入装备名称：<%= text_field :pvp, :weapon_name, :name => "weapon_name" %>
+  <input type="button" value="搜索" onclick="onSearchPvpWeapon()" />
+  <div id="pvp_weapon_div" style="width: 800px;border: 1px solid #000000;"></div><br /><br />
+
+  <h2>已选择装备：</h2>
+  <div id="pvp_selected_suits_div" style="width: 800px;border: 1px solid #000000;">
+    <%= render :partial => "/user/order_data/selected_pvp_suits", :locals => {:pvp_suits => @pvp_suits} if @pvp_suits %>
+    <%= render :partial => "/user/order_data/selected_pvp_equipment", :locals => {:equipment => @pvp_weapons} if @pvp_weapons %>
+  </div><br /><br />
+  <% form_for :order, :url => {:action => "personal_infomation"}, :html => {:onsubmit => "onSubmitPvp(this);return false;"} do |form| %>
+    请选择时间：<%= select :pvp_time_price, :id, [["", "0"]] + (@pvp_time_prices ? @pvp_time_prices.map {|p| [p.description, p.id] } : []), {},
+      {:onchange => "selectPvpTime(this)", :name => "pvp[pvp_time_price_id]"} %><br><br>
+
+    装备最低总金额: <span id="pvp_min_price"><%= @min_pvp_price %></span>元<br /><br />
+    装备总价格：<span id="pvp_eq_price"><%= @total_pvp_price || "0.0" %></span>元<br /><br />
+    价格：<span id="pvp_price">0.0</span>元<br /><br />
+    <input type="button" value="返回选择PVE" onclick="location.href='/user/orders/customize_level?clear=pvp'" />
+    <%= form.submit "完成" %>
+  <% end %>
+  <script type="text/javascript">
+    pvpTimePrice = [];
+    totalPvpPrice = <%= @total_pvp_price || "0" %>;
+    <% if @pvp_time_prices %>
+      <% @pvp_time_prices.each do |p| %>
+        pvpTimePrice.push([<%= p.id %>, <%= p.factor %>])
+      <% end %>
+    <% end %>
+  </script>
+</div>

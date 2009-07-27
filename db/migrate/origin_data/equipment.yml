@@ -3,6 +3,7 @@ eq1:
     name: 装备1
     equipment_level_id: 1
     equipment_category_id: 1
+    equipment_type_id: 1
     instance_id: 1
     suit_id: 1
     singlesellable: true
@@ -12,6 +13,7 @@ eq2:
     name: 装备2
     equipment_level_id: 2
     equipment_category_id: 1
+    equipment_type_id: 1
     instance_id: 2
     suit_id: 1
     singlesellable: true
@@ -21,6 +23,7 @@ eq3:
     name: 武器1
     equipment_level_id: 1
     equipment_category_id: 2
+    equipment_type_id: 2
     instance_id: 2
     singlesellable: true
     price: 300
@@ -29,6 +32,7 @@ eq2:
     name: 装备3
     equipment_level_id: 3
     equipment_category_id: 1
+    equipment_type_id: 1
     instance_id: 2
     singlesellable: true
     price: 400

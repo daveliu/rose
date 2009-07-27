@@ -5,6 +5,9 @@ options = "<option value='0'></option>"
 @pve_time_prices.each {|p| options << "<option value='#{p.id}'>#{p.description}</option>" }
 page.replace_html("pve_time_price_id", options)
 
-page.replace_html("pve_selected_suits_div", :partial => "selected_pve_suits", :locals => {:pve_suits => @pve_suits})
+page.replace_html("pve_selected_suits_div", "")
+page.insert_html(:bottom, "pve_selected_suits_div", :partial => "selected_pve_suits", :locals => {:pve_suits => @pve_suits})
+page.insert_html(:bottom, "pve_selected_suits_div", :partial => "selected_pve_equipment", :locals => {:equipment => @pve_equipment})
+page.insert_html(:bottom, "pve_selected_suits_div", :partial => "selected_pve_equipment", :locals => {:equipment => @pve_weapons})
 
 page.replace_html("pve_eq_price", @total_pve_price)

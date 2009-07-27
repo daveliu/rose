@@ -1,0 +1,7 @@
+<% pvp_suits.each do |suit| %>
+  <input id="pvp_suit_select_<%= suit.id %>" type="checkbox" value="<%= suit.id %>" onclick="selectPvpSuit(this.checked, <%= suit.id %>)"
+         <%= "checked" if session[:order] && session[:order][:pvp] && session[:order][:pvp][:suits] && session[:order][:pvp][:suits].include?(suit.id) %> />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%= suit.name %>&nbsp;&nbsp;
+  <%= suit.price %><br><br>
+<% end %>

@@ -59,6 +59,11 @@ class Users < ActiveRecord::Migration
       table.column :value, :string, :limit => 30
     end
 
+    #魔法 or 物理
+    create_table :equipment_series, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :value, :string, :limit => 30
+    end
+
     #副本
     create_table :instances, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :value, :string, :limit => 50
@@ -67,6 +72,7 @@ class Users < ActiveRecord::Migration
     create_table :equipment, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
       table.column :name, :string, :null => false, :limit => 50
       table.column :image_path, :string, :limit => 200
+      table.column :equipment_type_id, :integer
       table.column :equipment_level_id, :integer
       table.column :equipment_category_id, :integer
       table.column :instance_id, :integer
@@ -256,48 +262,18 @@ class Users < ActiveRecord::Migration
       table.column :description, :string, :limit => 200
     end
 
+    create_table :system_configs, :force => true, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |table|
+      table.column :name, :string, :limit => 30
+      table.column :value, :string, :limit => 30
+    end
+
     directory = File.dirname(__FILE__) + "/origin_data/"
     data = Dir.entries(directory).map {|file| file.end_with?(".yml") ? file[0...-4] : nil }.compact
     Fixtures.create_fixtures(directory, data)
   end
   
   def self.down
-    drop_table :users
-    drop_table :admins
-    drop_table :dealers
-    drop_table :upgrade_levels
-    drop_table :upgrade_level_prices
-    drop_table :equipment_levels
-    drop_table :equipment_types
-    drop_table :equipment_categories
-    drop_table :instances
-    drop_table :equipment
-    drop_table :pve_categories
-    drop_table :pve_suits
-    drop_table :pvp_categories
-    drop_table :pvp_suits
-    drop_table :orders
-    drop_table :orders_pvp_suits
-    drop_table :orders_pve_suits
-    drop_table :order_upgrade_levels
-    drop_table :packages
-    drop_table :packages_pve_suits
-    drop_table :packages_pvp_suits
-    drop_table :package_upgrade_levels
-    drop_table :games
-    drop_table :game_areas
-    drop_table :time_types
-    drop_table :game_servers
-    drop_table :order_statuses
-    drop_table :site_news
-    drop_table :site_messages
-    drop_table :account_statuses
-    drop_table :pay_types
-    drop_table :order_pvp_time_prices
-    drop_table :order_pve_time_prices
-    drop_table :pvp_time_prices
-    drop_table :pve_time_prices
-    drop_table :orders_pve_equipment
-    drop_table :orders_pvp_equipment
+    tables = User.find_by_sql("select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA = 'rose_development' and TABLE_NAME != 'schema_migrations'").map(&:TABLE_NAME)
+    tables.each {|t| drop_table t }
   end
 end

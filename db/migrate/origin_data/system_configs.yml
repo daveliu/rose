@@ -1,0 +1,8 @@
+config1:
+    id: 1
+    name: pve_min_price
+    value: 200
+config2:
+    id: 2
+    name: pvp_min_price
+    value: 200

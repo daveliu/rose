@@ -1,0 +1,3 @@
+<% equipment.each do |eq| %>
+  <%= eq.name %> <%= eq.price %> <%= link_to "取消", "javascript:removeEquipment(#{eq.id}, #{eq.equipment_type_id})" %><br>
+<% end %>
