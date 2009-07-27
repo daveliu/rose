@@ -18,6 +18,9 @@ class User::OrdersController < ApplicationController
     if params[:level]
       session[:order] = (session[:order] || {}).update(:level => params[:level])
     end
+    if params[:clear] == "pvp"
+      session[:order][:pvp] = nil if session[:order]
+    end
     @pve_categories = PveCategory.find(:all)
     @instances = Instance.find(:all)
     @min_pve_price = SystemConfig.find_by_name("pve_min_price").value
@@ -57,7 +60,10 @@ class User::OrdersController < ApplicationController
 
   def personal_infomation
     if params[:pvp]
-      session[:order][:pvp].update(params[:pvp])
+      session[:order][:pvp].update(params[:pvp]) if session[:order]
+    end
+    if params[:clear] == "pvp"
+      session[:order][:pvp] = nil
     end
     find_order_data
     @pay_types = PayType.find(:all)
@@ -91,6 +97,7 @@ class User::OrdersController < ApplicationController
 
   private
   def find_order_data
+    redirect_to :action => "customize_level" and return false if session[:order].nil? || (session[:order][:level].nil? && session[:order][:pve].nil? && session[:order][:pvp].nil?)
     @prices = []
     if session[:order][:level]
       @upgrade_level = UpgradeLevel.find(session[:order][:level][:upgrade_level_id]) if session[:order][:level][:upgrade_level_id]

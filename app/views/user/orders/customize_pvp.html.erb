@@ -26,14 +26,17 @@
     装备总价格：<span id="pvp_eq_price"><%= @total_pvp_price || "0.0" %></span>元<br /><br />
     价格：<span id="pvp_price">0.0</span>元<br /><br />
     <input type="button" value="返回选择PVE" onclick="location.href='/user/orders/customize_level?clear=pvp'" />
-    <%= form.submit "完成" %>
+    <% if session[:order] && (session[:order][:level] || session[:order][:pve] || session[:order][:pvp]) %>
+      <input type="button" value="跳过PVP选择" onclick="location.href='/user/orders/personal_infomation?clear=pvp'" />
+    <% end %>
+    <%= form.submit "确认" %>
   <% end %>
   <script type="text/javascript">
     pvpTimePrice = [];
     totalPvpPrice = <%= @total_pvp_price || "0" %>;
     <% if @pvp_time_prices %>
       <% @pvp_time_prices.each do |p| %>
-        pvpTimePrice.push([<%= p.id %>, <%= p.factor %>])
+          pvpTimePrice.push([<%= p.id %>, <%= p.factor %>])
       <% end %>
     <% end %>
   </script>
