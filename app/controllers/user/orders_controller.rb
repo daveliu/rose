@@ -73,7 +73,7 @@ class User::OrdersController < ApplicationController
 
   def create
     find_order_data
-    order = Order.new(params[:order].update(:order_status_id => 1, :total_price => @prices.sum))
+    order = Order.new(params[:order].update(:order_status_id => 1, :total_price => @prices.sum, :user_id => session[:user_id]))
 
     order.order_upgrade_level = OrderUpgradeLevel.new(:upgrade_level_id => @upgrade_level.id,
       :upgrade_level_price_id => @upgrade_level_price.id, :level_status_id => 1) if @upgrade_level && @upgrade_level_price
