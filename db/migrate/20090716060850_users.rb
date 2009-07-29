@@ -26,6 +26,15 @@ class Users < ActiveRecord::Migration
     create_table :dealers, :force => true do |table|
       table.column :username, :string, :null => false, :limit => 30
       table.column :password, :string, :null => false, :limit => 50
+      table.column :address, :string, :liimit => 200
+      table.column :email, :string, :limit => 30
+      table.column :qq, :string, :limit => 15
+      table.column :cell_phone, :string, :limit => 15
+      table.column :phone, :string, :limit => 15
+      table.column :id_card, :string, :limit => 30
+      table.column :address, :string, :limit => 200
+      table.column :bank_account, :string, :limit => 50
+      table.column :account_status_id, :integer
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
     end

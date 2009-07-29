@@ -1,0 +1,11 @@
+<% form_for :admin, :url => {:action => "create"} do |form| %>
+  <div class="query_title">&nbsp;</div>
+  <div class="float_left query_label">用户名</div>
+  <div class="query_text">&nbsp;&nbsp;<%= form.text_field :username %></div><br>
+  <div class="float_left query_label">密码</div>
+  <div class="query_text">&nbsp;&nbsp;<%= form.password_field :password %></div><br>
+  <div class="float_left query_label">&nbsp;</div>
+  <div class="query_text query_submit">&nbsp;&nbsp;
+    <%= form.submit "登录" %>&nbsp;&nbsp;
+  </div>
+<% end %>
