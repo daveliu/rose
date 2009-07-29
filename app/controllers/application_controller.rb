@@ -8,8 +8,22 @@ class ApplicationController < ActionController::Base
     @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
   end
 
-  def authentication
-    redirect_to new_user_session_path unless current_user
+  def current_admin
+    @current_admin ||= session[:admin_id] ? Admin.find(session[:admin_id]) : nil
+  end
+
+  def authenticate_user
+    unless current_user
+      session[:url] = request.uri
+      redirect_to new_user_session_path
+    end
+  end
+
+  def authenticate_admin
+    unless current_admin
+      session[:admin_url] = request.uri
+      redirect_to new_admin_session_path
+    end
   end
 
   def after_logon(user)

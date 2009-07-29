@@ -1,0 +1,65 @@
+.query_title
+{
+    font-weight:bold;
+    padding-left:10px;
+    padding-top:20px;
+    padding-bottom:2px;
+    border-bottom:3px solid #CAD9EA;
+}
+
+.query_textarea
+{
+    height:100px;
+    padding-top:3px;
+    background:#FFFFFF url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+.query_textarea_label
+{
+    height:100px;
+    line-height:30px;
+    padding-left:10px;
+    width:80px;
+    background:#F5F5F5 url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+
+.query_label
+{
+    height:30px;
+    line-height:30px;
+    padding-left:10px;
+    width:80px;
+    background:#F5F5F5 url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+
+.query_label_long
+{
+    height:30px;
+    line-height:30px;
+    padding-left:10px;
+    width:150px;
+    background:#F5F5F5 url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+
+.query_text
+{
+    height:27px;
+    padding-top:3px;
+    background:#FFFFFF url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+
+.query_text span
+{
+    padding-left:10px;
+    color:#A30000;
+}
+
+.query_submit input
+{
+    width:70px;
+    height:25px;
+    line-height:25px;
+    border:1px solid #CAD9EA;
+    background:#FFFFFF url(/images/admin/public/menu_bg.gif) repeat-x scroll 0%;
+}
+
+

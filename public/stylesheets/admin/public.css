@@ -1,0 +1,291 @@
+body
+{
+    margin: 12px;
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+div
+{
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+td
+{
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+span
+{
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+img
+{
+    border: 0px;
+}
+
+a
+{
+    font-size: 9pt;
+    font-family: Arial;
+    text-decoration: none;
+    color:#000000;
+}
+
+a:hover
+{
+    font-size: 9pt;
+    font-family: Arial;
+    text-decoration: underline;
+    color:#000000;
+}
+
+form
+{
+    margin: 0px;
+    font-size: 9pt;
+    font-family: Arial;
+}
+
+input
+{
+    font-size: 9pt;
+    font-family: Arial;
+    border:1px solid #666666;
+}
+
+select
+{
+    font-size: 9pt;
+    font-family: Arial;
+    border:1px solid #666666;
+}
+
+textarea
+{
+    font-size: 9pt;
+    font-family: Arial;
+    border:1px solid #666666;
+}
+
+.float_left
+{
+    float: left;
+}
+
+.clear_left
+{
+    clear: left;
+}
+
+
+.page_title_box
+{
+    background:#FFFFFF url(/images/admin/public/menu_bg.gif) repeat-x scroll 0%;
+    border:1px solid #CAD9EA;
+    height:31px;
+}
+
+.page_title
+{
+    margin-left:10px;
+    height:30px;
+    line-height:30px;
+    padding-left:18px;
+    background:url(/images/admin/public/menu_on.gif) no-repeat scroll 0pt 50%;
+}
+
+.msg_box
+{
+    border:1px solid #EDEDCE;
+    background:#FFFFF2;
+    padding-left:10px;
+    height:30px;
+    line-height:30px;
+    color:#A30000;
+}
+
+.msg_box_success
+{
+    border:1px solid #EDEDCE;
+    background:#FFFFF2;
+    padding-left:10px;
+    height:30px;
+    line-height:30px;
+    color: green;
+}
+
+#datainfo
+{
+    height: 30px;
+    line-height:30px;
+    padding-left:10px;
+}
+
+
+#datalist_title
+{
+    border:1px solid #CCCCCC;
+    background-color:#000000;
+    color:#FFFFFF;
+    height: 30px;
+    line-height:30px;
+    font-weight:bold;
+}
+
+#datalist_title span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+#datalist_list
+{
+    height:25px;
+    line-height:25px;
+    background:#FFFFFF url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+    border-top: 3px solid #ff8d31;
+}
+
+#datalist_list_new
+{
+    height:25px;
+    line-height:25px;
+    background:#FFFFFF url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+}
+
+#datalist_list_new span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+#datalist_list span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+#datalist_list_order
+{
+    height:25px;
+    line-height:25px;
+    background:#FFFFFF url(/images/admin/public/menu_bg.gif) repeat-x scroll 0%;
+}
+
+#datalist_list_order span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+
+#child_datalist_title
+{
+    border-bottom:1px solid #dedeb8;
+    background-color:#ffffd9;
+    color:#92a05a;
+    height: 25px;
+    line-height:25px;
+}
+
+#child_datalist_title span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+#child_datalist_list
+{
+    height:25px;
+    line-height:25px;
+    background:#ffffef url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+    color:#666666;
+}
+
+#child_datalist_list_text
+{
+    height:55px;
+    line-height:55px;
+    background:#ffffef url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+    color:#666666;
+}
+#child_datalist_list_text span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+#child_datalist_list span
+{
+    padding-left:2px;
+    padding-right:2px;
+    float:left;
+}
+
+.datalist_list_none
+{
+    height:25px;
+    line-height:25px;
+    background:#EFEFEF url(/images/admin/public/dot.gif) repeat-x scroll 0pt 100%;
+    text-align:center;
+    color:#666666;
+}
+
+.pagination
+{
+    text-align:right;
+    padding: 3px;
+    margin: 3px;
+    padding-top:12px;
+}
+
+.pagination a 
+{
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #aaaadd;
+    text-decoration: none;
+    color: #000099;
+}
+.pagination a:hover, .pagination a:active 
+{
+    border: 1px solid #000099;
+    color: #000;
+}
+.pagination span.current 
+{
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+    font-weight: bold;
+    background-color: #000099;
+    color: #FFF;
+}
+.pagination span.disabled 
+{
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #eee;
+    color: #ddd;
+}
+
+#img_urgent
+{
+    padding-top:3px;
+}
+
+#img_day
+{
+    padding-top:3px;
+}

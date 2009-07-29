@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "orders", :force => true do |t|
+    t.integer  "user_id",                       :null => false
     t.string   "order_code",      :limit => 20, :null => false
     t.integer  "order_status_id",               :null => false
     t.integer  "pay_type_id",                   :null => false

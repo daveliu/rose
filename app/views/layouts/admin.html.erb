@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>后台管理</title>
+    <%= stylesheet_link_tag 'admin/public' %>
+    <%= stylesheet_link_tag 'admin/query' %>
+    <%= javascript_include_tag 'prototype' %>
+  </head>
+  <body>
+    <div style="float:left;width:25%;border: 1px solid #008000">
+      <span><img src="/images/admin/public/tree_root.gif" width="18" height="18" border="0" align="absbottom"> 操作菜单</span><br>
+      <span>
+        <img src="/images/admin/public/tree_linemiddle.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_folderopen.gif" width="18" height="18" border="0" align="absmiddle"> 基础管理
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linemiddle.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/attribute" target="mainFrame">属性管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/category" target="mainFrame">分类管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/attribute_group" target="mainFrame">属性组管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/product_description" target="mainFrame">产品说明管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/category_tree" target="mainFrame">分类树管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/send_type" target="mainFrame">发送方式管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_line.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_file.gif" width="18" height="18" border="0" align="absbottom">
+        <a href="/admin/pay_type" target="mainFrame">支付方式管理</a>
+      </span><br>
+      <span>
+        <img src="/images/admin/public/tree_linebottom.gif" width="18" height="18" border="0" align="absbottom">
+        <img src="/images/admin/public/tree_folderopen.gif" width="18" height="18" border="0" align="absmiddle">
+        <a href="/admin/index/logout" target="_parent">退出系统</a>
+      </span><br>
+    </div>
+    <div style="float:left;width:75%">
+      <div class="msg_box"><%= flash[:notice] %></div>
+      <%= yield :layout %>
+    </div>
+  </body>
+</html>
