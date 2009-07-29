@@ -1,6 +1,6 @@
 class User::OrdersController < ApplicationController
   layout "home"
-  before_filter :authentication
+  before_filter :authenticate_user
   
   def customize_level
     if params[:clear] == "pve"

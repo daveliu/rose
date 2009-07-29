@@ -1,0 +1,41 @@
+.cls_login_name
+{
+    width: 200px;
+    font-weight:bold;
+}
+
+.cls_order_name
+{
+    width: 200px;
+}
+
+
+.cls_payer
+{
+    width:80px;
+}
+
+.cls_mobile
+{
+    width:90px;
+}
+
+.cls_phone
+{
+    width:120px;
+}
+
+.cls_order_code
+{
+    width:130px;
+}
+
+.cls_tem_name
+{
+     width: 100px;
+}
+
+.cls_order_price
+{
+    width:50px;
+}
