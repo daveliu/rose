@@ -24,8 +24,20 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "dealers", :force => true do |t|
-    t.string   "username",   :limit => 30, :null => false
-    t.string   "password",   :limit => 50, :null => false
+    t.string   "username",          :limit => 30,  :null => false
+    t.string   "password",          :limit => 50,  :null => false
+    t.string   "address",           :limit => 200
+    t.string   "email",             :limit => 30
+    t.string   "qq",                :limit => 15
+    t.string   "cell_phone",        :limit => 15
+    t.string   "phone",             :limit => 15
+    t.string   "id_card",           :limit => 30
+    t.string   "name",              :limit => 20
+    t.string   "id_card_image",     :limit => 20
+    t.string   "bank_account",      :limit => 50
+    t.string   "bank_name",         :limit => 50
+    t.string   "bank_location",     :limit => 100
+    t.integer  "account_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.integer  "equipment_type_id"
     t.integer  "equipment_level_id"
     t.integer  "equipment_category_id"
+    t.integer  "equipment_serie_id"
     t.integer  "instance_id"
     t.integer  "suit_id"
     t.boolean  "singlesellable"
@@ -46,6 +59,11 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
 
   create_table "equipment_categories", :force => true do |t|
     t.string "value", :limit => 30
+  end
+
+  create_table "equipment_game_roles", :force => true do |t|
+    t.integer "equipment_id", :null => false
+    t.integer "game_role_id", :null => false
   end
 
   create_table "equipment_levels", :force => true do |t|
@@ -63,6 +81,10 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   create_table "game_areas", :force => true do |t|
     t.integer "game_id"
     t.string  "value",   :limit => 20
+  end
+
+  create_table "game_roles", :force => true do |t|
+    t.string "value", :limit => 50
   end
 
   create_table "game_servers", :force => true do |t|

@@ -1,0 +1,9 @@
+role1:
+    id: 1
+    value: 法师
+role2:
+    id: 2
+    value: 战士
+role3:
+    id: 3
+    value: MM

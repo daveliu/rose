@@ -31,9 +31,6 @@ function onSubmitRegister(form) {
 }
 
 function onLoginSubmit(form) {
-    $$(".error").each(function (i) {
-        i.hide();
-    });
     var inputs = [{
         id: "user_username",
         allowBlank: false

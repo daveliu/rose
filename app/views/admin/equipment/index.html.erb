@@ -1,0 +1,28 @@
+<div class="query_text query_submit">
+  &nbsp;&nbsp;<input type="button" id="btnReset" value="添加散件" onClick="location.href='<%= new_admin_equipment_url %>'">
+</div>
+<br>
+<%= flash[:notice] %>
+
+<div class="query_title">共<%= @equipment.total_entries %>个散件</div>
+<%if @equipment.empty? %>
+  <div class="datalist_list_none">无任何散件</div>
+<% else %>
+  <div id="datalist_list_order">
+    <span class="cls_order_name">装备名称</span>
+    <span class="cls_order_name" style="width: 100px;">编辑</span>
+    <span class="cls_order_name" style="width: 100px;">删除</span>
+  </div>
+  <% for eq in @equipment %>
+    <div id="datalist_list_order" onmouseover="javascript: this.style.backgroundColor = '#f5f5f5';" onmouseout="javascript: this.style.backgroundColor = '#ffffff';">
+      <span class="cls_order_name"><%= eq.name %>&nbsp;</span>
+      <span class="query_submit" style="width: 100px;">
+        <%= link_to "编辑", edit_admin_equipment_url(eq.id) %>
+      </span>
+      <span class="query_submit" style="width: 100px;">
+        <%= link_to "删除", admin_equipment_url(eq.id), {:method => :delete, :confirm => "确定删除#{eq.name}？"} %>
+      </span>
+    </div>
+  <% end %>
+  <%= will_paginate @equipment %>
+<% end %>

@@ -9,4 +9,5 @@ class Equipment < ActiveRecord::Base
   belongs_to :suit, :polymorphic => true
   belongs_to :equipment_category
   belongs_to :instance
+  has_and_belongs_to_many :game_roles
 end

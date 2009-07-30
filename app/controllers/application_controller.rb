@@ -14,14 +14,14 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless current_user
-      session[:url] = request.uri
+      session[:url] = request.url
       redirect_to new_user_session_path
     end
   end
 
   def authenticate_admin
     unless current_admin
-      session[:admin_url] = request.uri
+      session[:admin_url] = request.url
       redirect_to new_admin_session_path
     end
   end

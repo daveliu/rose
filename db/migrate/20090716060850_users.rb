@@ -32,8 +32,12 @@ class Users < ActiveRecord::Migration
       table.column :cell_phone, :string, :limit => 15
       table.column :phone, :string, :limit => 15
       table.column :id_card, :string, :limit => 30
+      table.column :name, :string, :limit => 20
+      table.column :id_card_image, :string, :limit => 20
       table.column :address, :string, :limit => 200
       table.column :bank_account, :string, :limit => 50
+      table.column :bank_name, :string, :limit => 50
+      table.column :bank_location, :string, :limit => 100
       table.column :account_status_id, :integer
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
@@ -78,18 +82,28 @@ class Users < ActiveRecord::Migration
       table.column :value, :string, :limit => 50
     end
 
+    create_table :game_roles, :force => true do |table|
+      table.column :value, :string, :limit => 50
+    end
+
     create_table :equipment, :force => true do |table|
       table.column :name, :string, :null => false, :limit => 50
       table.column :image_path, :string, :limit => 200
       table.column :equipment_type_id, :integer
       table.column :equipment_level_id, :integer
       table.column :equipment_category_id, :integer
+      table.column :equipment_serie_id, :integer
       table.column :instance_id, :integer
       table.column :suit_id, :integer
       table.column :singlesellable, :boolean
       table.column :price, :float
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
+    end
+
+    create_table :equipment_game_roles, :force => true do |table|
+      table.column :equipment_id, :integer, :null => false
+      table.column :game_role_id, :integer, :null => false
     end
 
     #pve分类，T7,T8。。。

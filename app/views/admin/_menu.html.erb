@@ -1,0 +1,8 @@
+<% content.each do |c| %>
+  <span>
+    <%= menu_image("tree_line.gif", "absbottom") %>
+    <%= menu_image("tree_linemiddle.gif", "absbottom") %>
+    <%= menu_image("tree_file.gif", "absbottom") %>
+    <%= link_to c[0], c[1] %>
+  </span><br>
+<% end %>
