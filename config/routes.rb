@@ -36,7 +36,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resource :session
-    admin.resources :equipment
+    admin.resources :equipment, :pve_suits, :pvp_suits
   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.

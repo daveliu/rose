@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.string "value", :limit => 30
   end
 
-  create_table "equipment_game_roles", :force => true do |t|
+  create_table "equipment_game_roles", :id => false, :force => true do |t|
     t.integer "equipment_id", :null => false
     t.integer "game_role_id", :null => false
   end

@@ -101,7 +101,7 @@ class Users < ActiveRecord::Migration
       table.column :updated_at, :datetime
     end
 
-    create_table :equipment_game_roles, :force => true do |table|
+    create_table :equipment_game_roles, :force => true, :id => false do |table|
       table.column :equipment_id, :integer, :null => false
       table.column :game_role_id, :integer, :null => false
     end

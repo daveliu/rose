@@ -10,4 +10,8 @@ class Equipment < ActiveRecord::Base
   belongs_to :equipment_category
   belongs_to :instance
   has_and_belongs_to_many :game_roles
+
+  def before_destroy
+    EquipmentGameRole.delete_all({:equipment_id => self.id})
+  end
 end
