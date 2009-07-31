@@ -1,0 +1,8 @@
+<% form_for :dealer, :url => {:action => "create"} do |form| %>
+  <div class="query_title">&nbsp;</div>
+  <div class="float_left query_label">用户名</div>
+  <div class="query_text">
+    &nbsp;&nbsp;<%= form.text_field :username %>
+    <span id="eq_name_error" class="error" style="display:none;">请输入用户名</span>
+  </div>
+<% end %>

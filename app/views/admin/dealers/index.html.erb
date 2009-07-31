@@ -1,0 +1,27 @@
+<div class="query_text query_submit">
+  &nbsp;&nbsp;<input type="button" id="btnReset" value="添加代练组" onClick="location.href='<%= new_admin_dealer_url %>'">
+</div>
+<br>
+<%= flash[:notice] %>
+
+<div class="query_title">共<%= @dealers.size %>个代练组</div>
+<%if @dealers.empty? %>
+  <div class="datalist_list_none">无任何代练组</div>
+<% else %>
+  <div id="datalist_list_order">
+    <span class="cls_order_name">用户名</span>
+    <span class="cls_order_name" style="width: 100px;"></span>
+    <span class="cls_order_name" style="width: 100px;"></span>
+  </div>
+  <% for dealer in @dealers %>
+    <div id="datalist_list_order" onmouseover="javascript: this.style.backgroundColor = '#f5f5f5';" onmouseout="javascript: this.style.backgroundColor = '#ffffff';">
+      <span class="cls_order_name"><%= dealer.username %>&nbsp;</span>
+      <span class="query_submit" style="width: 100px;">
+        <%= link_to "编辑", edit_admin_dealer_url(dealer.id) %>
+      </span>
+      <span class="query_submit" style="width: 100px;">
+        <%= link_to "删除", admin_dealer_url(dealer.id), {:method => :delete, :confirm => "确定删除#{dealer.username}？"} %>
+      </span>
+    </div>
+  <% end %>
+<% end %>
