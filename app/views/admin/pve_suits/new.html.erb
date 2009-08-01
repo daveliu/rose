@@ -13,12 +13,14 @@
   <div class="float_left query_label">级别</div>
   <div class="query_text">
     &nbsp;&nbsp;<%= form.select :pve_category_id, get_eq_options(@categories) %>
-    <span id="eq_pve_category_id_error" class="error" style="display:none;">请选择装备类别</span>
+    <span id="eq_pve_category_id_error" class="error" style="display:none;">请选择套装级别</span>
   </div>
   <div class="float_left query_label">价格</div>
   <div class="query_text">
     &nbsp;&nbsp;<%= form.text_field(:price) %>
   </div>
+  <div class="query_label">选择散件</div>
+  
   <div class="float_left query_label">&nbsp;</div>
   <div class="query_text query_submit">&nbsp;&nbsp;
     <%= form.submit "确定", :name => nil %>&nbsp;&nbsp;

@@ -9,6 +9,7 @@ class Equipment < ActiveRecord::Base
   belongs_to :suit, :polymorphic => true
   belongs_to :equipment_category
   belongs_to :instance
+  belongs_to :upload_image
   has_and_belongs_to_many :game_roles
 
   def before_destroy

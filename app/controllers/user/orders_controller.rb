@@ -43,8 +43,7 @@ class User::OrdersController < ApplicationController
     if params[:pve]
       session[:order][:pve].update(params[:pve])
     end
-    @pvp_categories = PvpCategory.find(:all)
-    @instances = Instance.find(:all)
+    @pvp_seasons = PvpSeason.find(:all)
     @min_pvp_price = SystemConfig.find_by_name("pvp_min_price").value
     if session[:order] && session[:order][:pvp]
       if session[:order][:pvp][:suits]

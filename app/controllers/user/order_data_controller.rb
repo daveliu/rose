@@ -35,7 +35,7 @@ class User::OrderDataController < ApplicationController
   end
 
   def pvp_suits
-    pvp_category = PvpCategory.find(params[:pvp_category_id].to_i)
+    pvp_category = PvpSeason.find(params[:pvp_season_id].to_i)
     render :update do |page|
       page.replace_html("pvp_suits_div", :partial => "pvp_suits", :locals => {:pvp_suits => pvp_category.pvp_suits, :checked => false})
     end
@@ -43,15 +43,15 @@ class User::OrderDataController < ApplicationController
 
   def pvp_time_price
     update_pvp_session
-    @pvp_suits = PvpSuit.find(session[:order][:pvp][:suits], :include => [:pvp_category])
+    @pvp_suits = PvpSuit.find(session[:order][:pvp][:suits], :include => [:pvp_season])
     @pvp_weapons = Equipment.find(session[:order][:pvp][:weapons])
     @total_pvp_price = @pvp_suits.map(&:price).sum + @pvp_weapons.map(&:price).sum
     @pvp_time_prices = PvpTimePrice.find_by_price(@total_pvp_price) if @total_pvp_price > SystemConfig.find_by_name("pvp_min_price").value.to_f
   end
 
   def pvp_equipment
-    if params[:instance_id]
-      equipment = Equipment.find_all_by_equipment_category_id_and_equipment_type_id_and_instance_id(Equipment::CATEGORY_PVE, Equipment::TYPE_WEAPON, params[:instance_id].to_i)
+    if params[:pvp_season_id]
+      equipment = Equipment.find_all_by_equipment_category_id_and_equipment_type_id_and_pvp_season_id(Equipment::CATEGORY_PVP, Equipment::TYPE_WEAPON, params[:pvp_season_id].to_i)
     elsif params[:eq_name]
       equipment = Equipment.find_all_by_equipment_category_id_and_equipment_type_id(Equipment::CATEGORY_PVE, Equipment::TYPE_WEAPON,
         :conditions => ["name like ?", "%#{params[:eq_name]}%"])

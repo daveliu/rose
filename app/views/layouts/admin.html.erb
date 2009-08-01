@@ -16,6 +16,10 @@
         </span><br>
         <%= render :partial => "admin/menu", :locals => {:content => [["散件管理", "/admin/equipment"], ["PVE套装管理", "/admin/pve_suits"], ["PVP套装管理", "/admin/pvp_suits"]]} %>
         <span>
+          <%= menu_image("tree_linemiddle.gif", "absbottom") %>
+          <%= menu_image("tree_folderopen.gif", "absmiddle") %> <%= link_to "代练组管理", admin_dealers_url %>
+        </span><br>
+        <span>
           <%= menu_image("tree_linebottom.gif", "absbottom") %>
           <%= menu_image("tree_folderopen.gif", "absmiddle") %>
           <%= link_to "退出登录", admin_session_url, {:method => :delete} %>

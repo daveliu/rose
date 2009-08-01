@@ -39,16 +39,16 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 
-  #require "actionmailer"
-  #ActionMailer::Base.delivery_method = :smtp
-  #ActionMailer::Base.default_charset = "UTF-8"
-   config.action_mailer.smtp_settings = {
-     :enable_starttls_auto => true,
-     :address        => 'smtp.gmail.com',
-     :port           => 587,
-     :domain         => 'mg17.com',
-     :authentication => :plain,
-     :user_name      => 'wjp712@gmail.com',
-     :password       => '57322794'
- }
+  config.action_mailer.smtp_settings = {
+    :tls => true,
+    :address        => 'smtp.gmail.com',
+    :port           => 587,
+    :domain         => 'mg17.com',
+    :authentication => :plain,
+    :user_name      => 'wjp712@gmail.com',
+    :password       => '57322794'
+  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_charset = 'utf-8'
 end

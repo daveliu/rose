@@ -33,8 +33,7 @@ class Users < ActiveRecord::Migration
       table.column :phone, :string, :limit => 15
       table.column :id_card, :string, :limit => 30
       table.column :name, :string, :limit => 20
-      table.column :id_card_image, :string, :limit => 20
-      table.column :address, :string, :limit => 200
+      table.column :id_card_image, :integer
       table.column :bank_account, :string, :limit => 50
       table.column :bank_name, :string, :limit => 50
       table.column :bank_location, :string, :limit => 100
@@ -88,12 +87,13 @@ class Users < ActiveRecord::Migration
 
     create_table :equipment, :force => true do |table|
       table.column :name, :string, :null => false, :limit => 50
-      table.column :image_path, :string, :limit => 200
+      table.column :upload_image_id, :integer
       table.column :equipment_type_id, :integer
       table.column :equipment_level_id, :integer
       table.column :equipment_category_id, :integer
       table.column :equipment_serie_id, :integer
-      table.column :instance_id, :integer
+      table.column :instance_id, :integer #PVE用
+      table.column :pvp_season_id, :integer #PVP用
       table.column :suit_id, :integer
       table.column :singlesellable, :boolean
       table.column :price, :float
@@ -114,7 +114,7 @@ class Users < ActiveRecord::Migration
     #pve套装
     create_table :pve_suits, :force => true do |table|
       table.column :name, :string, :null => false, :limit => 50
-      table.column :image_path, :string, :limit => 200
+      table.column :upload_image_id, :integer
       table.column :price, :float
       table.column :pve_category_id, :integer
       table.column :created_at, :datetime
@@ -129,14 +129,14 @@ class Users < ActiveRecord::Migration
     end
 
     #pvp分类
-    create_table :pvp_categories, :force => true do |table|
+    create_table :pvp_seasons, :force => true do |table|
       table.column :value, :string, :limit => 30
     end
 
     create_table :pvp_suits, :force => true do |table|
       table.column :name, :string, :null => false, :limit => 50
-      table.column :image, :string, :limit => 200
-      table.column :pvp_category_id, :integer
+      table.column :upload_image_id, :integer
+      table.column :pvp_season_id, :integer
       table.column :price, :float
       table.column :created_at, :datetime
       table.column :updated_at, :datetime
@@ -262,7 +262,7 @@ class Users < ActiveRecord::Migration
     create_table :site_news, :force => true do |table|
       table.column :title, :string, :limit => 100
       table.column :content, :string, :limit => 3000
-      table.column :image_path, :string, :limit => 100
+      table.column :upload_image_id, :integer
       table.column :owner_type, :string, :limit => 20
       table.column :owner_id, :integer
       table.column :created_at, :datetime
@@ -293,6 +293,17 @@ class Users < ActiveRecord::Migration
     create_table :system_configs, :force => true do |table|
       table.column :name, :string, :limit => 30
       table.column :value, :string, :limit => 30
+    end
+
+    create_table :upload_images, :force => true do |table|
+      table.column :parent_id,  :integer
+      table.column :content_type, :string
+      table.column :filename, :string
+      table.column :thumbnail, :string
+      table.column :size, :integer
+      table.column :width, :integer
+      table.column :height, :integer
+      table.column :created_at, :datetime
     end
 
     directory = File.dirname(__FILE__) + "/origin_data/"

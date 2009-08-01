@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   create_table "dealers", :force => true do |t|
     t.string   "username",          :limit => 30,  :null => false
     t.string   "password",          :limit => 50,  :null => false
-    t.string   "address",           :limit => 200
+    t.string   "address"
     t.string   "email",             :limit => 30
     t.string   "qq",                :limit => 15
     t.string   "cell_phone",        :limit => 15
     t.string   "phone",             :limit => 15
     t.string   "id_card",           :limit => 30
     t.string   "name",              :limit => 20
-    t.string   "id_card_image",     :limit => 20
+    t.integer  "id_card_image"
     t.string   "bank_account",      :limit => 50
     t.string   "bank_name",         :limit => 50
     t.string   "bank_location",     :limit => 100
@@ -43,13 +43,14 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "equipment", :force => true do |t|
-    t.string   "name",                  :limit => 50,  :null => false
-    t.string   "image_path",            :limit => 200
+    t.string   "name",                  :limit => 50, :null => false
+    t.integer  "upload_image_id"
     t.integer  "equipment_type_id"
     t.integer  "equipment_level_id"
     t.integer  "equipment_category_id"
     t.integer  "equipment_serie_id"
     t.integer  "instance_id"
+    t.integer  "pvp_season_id"
     t.integer  "suit_id"
     t.boolean  "singlesellable"
     t.float    "price"
@@ -196,8 +197,8 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "pve_suits", :force => true do |t|
-    t.string   "name",            :limit => 50,  :null => false
-    t.string   "image_path",      :limit => 200
+    t.string   "name",            :limit => 50, :null => false
+    t.integer  "upload_image_id"
     t.float    "price"
     t.integer  "pve_category_id"
     t.datetime "created_at"
@@ -211,14 +212,14 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
     t.integer "max_day"
   end
 
-  create_table "pvp_categories", :force => true do |t|
+  create_table "pvp_seasons", :force => true do |t|
     t.string "value", :limit => 30
   end
 
   create_table "pvp_suits", :force => true do |t|
-    t.string   "name",            :limit => 50,  :null => false
-    t.string   "image",           :limit => 200
-    t.integer  "pvp_category_id"
+    t.string   "name",            :limit => 50, :null => false
+    t.integer  "upload_image_id"
+    t.integer  "pvp_season_id"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -244,10 +245,10 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   end
 
   create_table "site_news", :force => true do |t|
-    t.string   "title",      :limit => 100
-    t.string   "content",    :limit => 3000
-    t.string   "image_path", :limit => 100
-    t.string   "owner_type", :limit => 20
+    t.string   "title",           :limit => 100
+    t.string   "content",         :limit => 3000
+    t.integer  "upload_image_id"
+    t.string   "owner_type",      :limit => 20
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -276,6 +277,17 @@ ActiveRecord::Schema.define(:version => 20090716060850) do
   create_table "upgrade_levels", :force => true do |t|
     t.string "value", :limit => 30
     t.float  "price",               :null => false
+  end
+
+  create_table "upload_images", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
   end
 
   create_table "users", :force => true do |t|

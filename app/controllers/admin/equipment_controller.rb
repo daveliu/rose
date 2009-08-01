@@ -17,9 +17,9 @@ class Admin::EquipmentController < ApplicationController
   end
 
   def create
-    filepath = save_image(params[:eq].delete(:image))
+    image_id = save_image(params[:image])
     game_roles = GameRole.find(params[:roles].values.map {|i| i.to_i })
-    eq = Equipment.new(params[:eq].update(:image_path => filepath))
+    eq = Equipment.new(params[:eq].update(:upload_image_id => image_id))
     eq.game_roles = game_roles
     eq.save!
     flash[:notice] = "添加武器成功"
@@ -27,16 +27,15 @@ class Admin::EquipmentController < ApplicationController
   end
 
   def update
-    image = params[:eq].delete(:image)
+    image_id = save_image(params[:image])
+    params[:eq].update(:upload_image_id => image_id) if image_id
     eq = Equipment.find(params[:id])
-    eq.update_attributes!(params[:eq])
-    if image
-      filepath = save_image(image)
-      eq.update_attributes!(:image_path => filepath)
+    Equipment.transaction do
+      eq.attributes = params[:eq]
+      game_roles = GameRole.find(params[:roles].values.map {|i| i.to_i })
+      eq.game_roles = game_roles
+      eq.save!
     end
-    game_roles = GameRole.find(params[:roles].values.map {|i| i.to_i })
-    eq.game_roles = game_roles
-    eq.save!
     flash[:notice] = "修改成功"
     redirect_to edit_admin_equipment_path(eq)
   end
@@ -55,5 +54,6 @@ class Admin::EquipmentController < ApplicationController
     @series = EquipmentSerie.find(:all)
     @roles = GameRole.find(:all)
     @instances = Instance.find(:all)
+    @pvp_seasons = PvpSeason.find(:all)
   end
 end

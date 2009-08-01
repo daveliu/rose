@@ -164,11 +164,10 @@ function onSubmitPve(form) {
 
 function findPvpSuits(element) {
     if (element.value.blank() || element.value == "0") {
-        $("pvp_category_id").update("<option value='0'>请选择</option>");
         $("pvp_suits_div").update("");
     }
     else {
-        new Ajax.Request('/user/order_data/pvp_suits?pvp_category_id=' + element.value, {
+        new Ajax.Request('/user/order_data/pvp_suits?pvp_season_id=' + element.value, {
             method: 'get',
             evalScript:true
         });
@@ -194,7 +193,7 @@ function connectPvpTimePrice(params) {
 function selectPvpEquipment(checked, eq_id) {
     var  params = new Hash({
         type: (checked ? "add" : "remove"),
-        pvp_equipment_id: eq_id
+        pvp_weapon_id: eq_id
     });
     connectPvpTimePrice(params)
 }
@@ -221,7 +220,7 @@ function findPvpEquipment(element) {
         $("pvp_equipment_div").update("");
     }
     else {
-        new Ajax.Request("/user/order_data/pvp_equipment?instance_id=" + element.value, {
+        new Ajax.Request("/user/order_data/pvp_equipment?pvp_season_id=" + element.value, {
             method: 'get',
             evalScript:true
         });

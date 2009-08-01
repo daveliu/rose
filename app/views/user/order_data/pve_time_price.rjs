@@ -1,3 +1,5 @@
+@pve_time_prices ||= []
+
 page.assign "pveTimePrice", @pve_time_prices.map {|p| [p.id, p.factor] }
 page.assign "totalPvePrice", @total_pve_price
 
